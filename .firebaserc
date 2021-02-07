@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "uowcos": {
+      "hosting": {
+        "Uowcos": [
+          "uowcos"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "uowcos"
+  }
+}

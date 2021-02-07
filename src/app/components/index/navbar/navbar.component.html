@@ -1,0 +1,65 @@
+<header class="uk-container uk-container-small">
+    <div class="uk-container">
+        <nav class="uk-navbar-container uk-navbar-transparent" data-uk-navbar>
+            <div class="uk-navbar-left">
+                <div class="uk-navbar-nav" style="color: #22588f">
+                    <a class="uk-icon youtube  uk-margin-small-right" href="https://www.youtube.com/channel/UCxHERA9mci6TIpKS1ghFnJw" uk-icon="youtube" target="_blank"></a>
+                    <a class="uk-icon facebook uk-margin-small-right" uk-icon="facebook"href="https://fb.com" target="_blank"></a>
+                    <a class="uk-icon telegram uk-margin-small-right"  href="https://telegram.org" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#22588f"><path d="M158.71128,22.53888c-2.58,-2.18784 -6.63232,-2.50088 -10.82224,-0.81872h-0.00688c-4.40664,1.76816 -124.73784,53.38192 -129.6364,55.49064c-0.89096,0.3096 -8.67224,3.21296 -7.87072,9.68016c0.71552,5.8308 6.96944,8.24568 7.73312,8.52432l30.59192,10.4748c2.0296,6.75616 9.5116,31.6824 11.16624,37.00752c1.032,3.3196 2.71416,7.68152 5.66224,8.57936c2.58688,0.9976 5.16,0.086 6.82496,-1.2212l18.70328,-17.34792l30.19288,23.5468l0.71896,0.43c2.05024,0.90816 4.01448,1.36224 5.88928,1.36224c1.44824,0 2.838,-0.27176 4.16584,-0.81528c4.5236,-1.8576 6.33304,-6.16792 6.52224,-6.6564l22.55264,-117.22488c1.376,-6.2608 -0.53664,-9.44624 -2.38736,-11.01144zM75.68,110.08l-10.32,27.52l-10.32,-34.4l79.12,-58.48z"></path></g></g></svg></a>
+                </div>
+
+            </div>
+            <div class="uk-navbar-center">
+                <div class="uk-navbar-item">
+                    <a class="uk-logo" href=""><img class="uk-border-circle" loading="lazy" src="../../../../assets/img/wasit.png" alt="Logo"></a>
+                </div>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a routerLink="/login" class="uk-text-bold" >login</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div>
+    <nav class="uk-navbar-container  " uk-navbar uk-sticky="animation: uk-animation-slide-top; show-on-up: true"
+        style=" height: 50px; background-color: #22588f;">
+        <div class="uk-navbar-center uk-navbar-item  nav-overlay" id="navbar_collapse">
+            <div class=" uk-navbar-flip">
+                <ul class="uk-navbar-nav uk-visible@s">
+                    <li [routerLinkActive]="['uk-active']" [routerLinkActiveOptions]="{ exact: true }"><a [routerLink]="''">Home</a></li>
+                    <li [routerLinkActive]="['uk-active']"><a routerLink="/resources">Resources</a></li>
+                    <li [routerLinkActive]="['uk-active']"><a routerLink="/teach">Department teachers</a></li>
+                    <li [routerLinkActive]="['uk-active']"><a routerLink="/news">News</a></li>
+                    <li [routerLinkActive]="['uk-active']"><a routerLink="/idea">Idea</a></li>
+                    <li [routerLinkActive]="['uk-active']"><a routerLink="/powered">powered</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="uk-navbar-left ">
+
+            <ul class="uk-navbar-nav  uk-hidden@s ">
+                <li class="uk-margin-remove-top">
+                    <a style="padding-bottom: 28px" uk-navbar-toggle-icon></a>
+                    <div class="uk-width-1-1  "
+                        uk-dropdown="mode: click;animation: uk-animation-slide-top-small ; duration: 300; boundary-align: true"
+                        style="margin-top: -30px;background-color: #22588f;">
+                        <ul class="uk-nav uk-dropdown-nav ">
+                            <li [routerLinkActive]="['uk-active']" [routerLinkActiveOptions]="{ exact: true }"><a [routerLink]="''">Home</a></li>
+                            <li [routerLinkActive]="['uk-active']"><a routerLink="/resources">Resources</a></li>
+                            <li [routerLinkActive]="['uk-active']"><a routerLink="/teach">Department teachers</a></li>
+                            <li [routerLinkActive]="['uk-active']"><a routerLink="/news">News</a></li>
+                            <li [routerLinkActive]="['uk-active']"><a routerLink="/idea">Idea</a></li>
+                            <li [routerLinkActive]="['uk-active']"><a routerLink="/powered">powered</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

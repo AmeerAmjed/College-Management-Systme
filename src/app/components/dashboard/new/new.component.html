@@ -1,0 +1,132 @@
+
+<!-- <div *ngIf="loadingData" class="uk-position-center" >
+    <div uk-spinner="ratio: 3"></div>
+
+</div>
+*ngIf="!loadingData" -->
+{{post}}
+<div  >
+
+        <div class="uk-align-right uk-margin-small-bottom">
+            <a class="uk-icon-button uk-margin-small-right " uk-icon="plus"></a>
+            <div class="uk-navbar-dropdown" uk-dropdown="mode: click">
+                <ul class="uk-nav uk-navbar-dropdown-nav ">
+                    <li class="uk-dropdown-close"><a uk-icon="file-text" uk-toggle="target: #modal-post">Add post</a></li>
+                    <li class="uk-dropdown-close"><a uk-icon="file-text" uk-toggle="target: #modal-topStudent">Add Top Student</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div  *ngFor="let item of post" class="uk-padding@s uk-margin uk-margin-auto-left uk-margin-auto-right uk-margin-small-bottom  uk-width-1-2@l">
+                <article  class="uk-comment uk-comment-primary uk-visible-toggle " tabindex="-1" >
+                        <header class="uk-comment-header uk-position-relative">
+                            <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                                <div class="uk-width-auto">
+                                    <img loading="lazy" class="uk-comment-avatar uk-border-rounded" src="../../../../assets/img/wasit.png" width="50" height="60" alt="imgUser">
+                                </div>
+                                <div class="uk-width-expand">
+                                    <h5 class="uk-comment-title uk-margin-remove uk-text-capitalize">UoW Computer Science</h5>
+                                    <div class="uk-comment-meta uk-margin-remove-top">
+                                            <span *ngIf="item.status == 'public'"  uk-icon="world"></span>
+                                            <span *ngIf="item.status == 'private'"  uk-icon="users"></span>
+                                            <time style="padding-top: 2px">{{item.data | date:' EEEEEE h:mm a '}}</time>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-position-top-right uk-position-small uk-hidden-hover">
+                                <span class="uk-text-danger" uk-icon="trash" (click)="deletePost(item.$key)" uk-tooltip="Delete post"></span>
+                            </div>
+                        </header>
+                        <div class="uk-comment-body">
+                            <p>{{item.body}}</p>
+                        </div>
+                    </article>
+            </div>
+
+
+            <!-- <div id="totop" class="uk-align-right uk-margin-small-bottom">
+                <a class="uk-icon-button uk-margin-small-right " uk-totop uk-scroll></a> 
+            </div> -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- This is the modal add post -->
+<div id="modal-post" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <form [formGroup]="formaddPost" (ngSubmit)="addPost()">
+            <fieldset class="uk-fieldset">
+
+                <legend class="uk-legend uk-text-style">Add post</legend>
+
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Title subject" name="title" formControlName="title" required>
+                </div>
+
+                <div class="uk-margin">
+                    <select class="uk-select" formControlName="status" required>
+                        <option value="" hidden selected>StatUs Poster</option>
+                        <option value="public"><span uk-icon="world"></span> public</option>
+                        <option value="private"> <span uk-icon="users"></span> private</option>
+                    </select>
+                </div>
+                <div class="uk-margin">
+                    <textarea class="uk-textarea" style="resize: vertical;" rows="5" placeholder="Subject" formControlName="body" required></textarea>
+                </div>
+
+            </fieldset>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">Cancel</button>
+                <button class="uk-button uk-button-primary  " [disabled]="!formaddPost.valid" type="submit">Save</button>
+            </p>
+        </form>
+
+    </div>
+</div>
+    
+ 
+
+<!-- This is the modal add post -->
+<div id="modal-topStudent" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <form [formGroup]="formaddToStudent" (ngSubmit)="addTopStudent()">
+            <fieldset class="uk-fieldset">
+
+                <legend class="uk-legend uk-text-style">Add Top Student</legend>
+
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Full Name Student" name="nameStudent" formControlName="nameStudent" required>
+                </div>
+
+                <div class="uk-margin">
+                    <select class="uk-select" formControlName="level" required>
+                        <option value="" hidden selected>Level Student</option>
+                        <option value="one"><span uk-icon="world"></span> One</option>
+                        <option value="two"> <span uk-icon="users"></span> Two</option>
+                        <option value="three"> <span uk-icon="users"></span> Three</option>
+
+                    </select>
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="number" placeholder="Average Student" name="average" formControlName="average" required>
+                </div>
+
+            </fieldset>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">Cancel</button>
+                <button class="uk-button uk-button-primary  " [disabled]="!formaddToStudent.valid" type="submit">Save</button>
+            </p>
+        </form>
+
+    </div>
+</div>

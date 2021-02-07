@@ -1,0 +1,64 @@
+.uk-logo img {
+  height: 58px;
+}
+
+.youtube:hover {
+  color: #c4302b;
+}
+.facebook:hover {
+  color: #002b87;
+}
+.telegram:hover {
+  color: #28a0ec;
+}
+
+.uk-navbar-right ul li a{
+  color:#22588f
+}
+
+.uk-active {
+  color: white;
+  text-decoration: underline;
+  font-size: 1.8rem !important;
+}
+.uk-dropdown-nav > li > a {
+  color: #fff;
+  font-size: 19px;
+  font-weight: bold ;
+  text-transform: uppercase;
+
+}
+
+.uk-navbar-nav > li > a {
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.uk-navbar-nav li a:hover , .uk-navbar-right ul li a:hover {
+  color: #fede50;
+}
+
+/* .uk-navbar-nav > li:hover > a,
+.uk-navbar-nav > li > a.uk-open,
+.uk-navbar-nav > li > a:focus {
+  color: #fae780;
+  outline: 0;
+} */
+
+
+
+.uk-sticky-fixed {
+  box-shadow: 0 1px 5px 0 #0e0e0e;
+}
+.uk-navbar-dropdown-nav > li > a {
+  color: #22588f;
+}
+
+.uk-dropdown {
+  box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+

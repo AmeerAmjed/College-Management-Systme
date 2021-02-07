@@ -1,0 +1,122 @@
+<div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport uk-position-z-index uk-position-relative"
+	data-uk-height-viewport="min-height: 400">
+	<!-- NAV -->
+	<div class="uk-position-top ">
+		<div class="uk-container uk-container-small uk-margin-medium-top">
+			<nav class="uk-navbar-container uk-navbar-transparent" data-uk-navbar>
+				<div class="uk-navbar-left">
+					<div class="uk-navbar-nav">
+						<a routerLink="/" class="uk-icon-button  uk-margin-small-right" uk-icon="home"></a>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<div class="uk-section  uk-flex uk-flex-middle" uk-height-viewport="offset-top: true">
+
+		<div class="uk-width-1-1@m">
+			<div class="uk-container uk-container-small">
+				<div uk-grid class="uk-grid-large uk-grid-divider">
+
+					<div class="uk-width-1-2@s" >
+						<div class="uk-margin-auto uk-padding uk-padding-remove-horizontal" >
+							<form  [formGroup]="Formlogin" (ngSubmit)="login(Formlogin.value)" class="uk-card uk-card-default uk-card-body uk-border-rounded" style="/*background-color: #333;*//*! margin: ; */padding: 22px;">
+								<div class="uk-margin">
+									<div class="uk-inline uk-width-1-1">
+										<span class="uk-form-icon" uk-icon="icon: mail"></span>
+										<input [ngClass]="{'uk-form-danger': (Formlogin.controls['email'].invalid &&Formlogin.controls['email'].touched), 'uk-form-success':Formlogin.controls['email'].valid }" class="uk-input " type="text" placeholder="E-mail" name="email" formControlName="email"  required>
+									</div>
+									<div  *ngIf="Formlogin.controls['email'].invalid && (Formlogin.controls['email'].dirty || Formlogin.controls['email'].touched )"
+										class="uk-text-meta uk-text-danger uk-margin-small-left">
+										<span *ngIf="Formlogin.controls['email'].errors.required"
+											class="uk-margin-small-left">
+											Please enter a Email.
+										</span>
+										<span *ngIf="Formlogin.controls['email'].dirty " class="uk-margin-small-left">
+											Your a Email Invalid .
+										</span>
+
+									</div>
+
+								</div>
+								<div class="uk-margin uk-margin-remove-top">
+									<div class="uk-inline uk-width-1-1">
+										<span class="uk-form-icon" uk-icon="icon: lock"></span>
+										<input [ngClass]="{'uk-form-danger': (Formlogin.controls['password'].invalid &&Formlogin.controls['password'].touched), 'uk-form-success':Formlogin.controls['password'].valid }" class="uk-input " type="{{ isActive ? 'password' : 'text' }}" placeholder="Password" name="password" formControlName="password" required>
+										<a class="uk-form-icon uk-form-icon-flip"  (click)="eye()">
+												<svg *ngIf="!isActive"  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#999999"><path d="M30.15039,20.01628l-10.13411,10.13411l16.40495,16.40495c-19.11239,15.36761 -28.10189,35.2607 -28.68066,36.61719l-1.20378,2.82747l1.20378,2.82747c0.95317,2.22883 23.99344,54.50586 78.25944,54.50586c14.80883,0 27.2133,-3.94498 37.54101,-9.6582l18.3086,18.30859l10.13411,-10.13411zM86,28.66667c-8.67883,0 -16.48311,1.43781 -23.59961,3.69531l11.79981,11.7998c3.73383,-0.7095 7.63597,-1.16178 11.7998,-1.16178c38.67133,0 58.53465,32.88134 63.71615,42.97201c-2.107,4.03483 -6.72424,11.86699 -13.95541,19.75032l10.2181,10.2181c12.04,-13.029 17.81476,-26.03079 18.2806,-27.11295l1.20378,-2.82747l-1.20378,-2.82747c-0.95317,-2.22883 -23.99344,-54.50586 -78.25944,-54.50586zM46.66732,56.80143l14.69727,14.69727c-2.54096,4.24622 -4.03125,9.19008 -4.03125,14.5013c0,15.80967 12.857,28.66667 28.66667,28.66667c5.31122,0 10.25508,-1.49029 14.50131,-4.03125l12.3597,12.3597c-7.69485,3.64868 -16.6248,6.00489 -26.861,6.00489c-38.67133,0 -58.53465,-32.88134 -63.71615,-42.97201c2.97864,-5.70437 10.97118,-18.92775 24.38346,-29.22656zM87.52572,57.4873l26.98698,26.98698c-0.78117,-14.56983 -12.41715,-26.20581 -26.98698,-26.98698zM72.19857,82.33268l17.46875,17.46875c-1.17367,0.3155 -2.39229,0.5319 -3.66732,0.5319c-7.90483,0 -14.33333,-6.4285 -14.33333,-14.33333c0,-1.27503 0.2164,-2.49365 0.5319,-3.66732z"></path></g></g></svg>
+												<svg *ngIf="isActive" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#999999"><path d="M86,28.66667c-57.33333,0 -78.83333,57.33333 -78.83333,57.33333c0,0 21.5,57.33333 78.83333,57.33333c57.33333,0 78.83333,-57.33333 78.83333,-57.33333c0,0 -21.5,-57.33333 -78.83333,-57.33333zM86,43c37.81133,0 56.93626,30.58084 63.12826,42.97201c-6.19917,12.30517 -25.46742,43.02799 -63.12826,43.02799c-37.81133,0 -56.93626,-30.58084 -63.12826,-42.97201c6.20633,-12.30517 25.46742,-43.02799 63.12826,-43.02799zM86,57.33333c-15.83117,0 -28.66667,12.8355 -28.66667,28.66667c0,15.83117 12.8355,28.66667 28.66667,28.66667c15.83117,0 28.66667,-12.8355 28.66667,-28.66667c0,-15.83117 -12.8355,-28.66667 -28.66667,-28.66667zM86,71.66667c7.91917,0 14.33333,6.41417 14.33333,14.33333c0,7.91917 -6.41417,14.33333 -14.33333,14.33333c-7.91917,0 -14.33333,-6.41417 -14.33333,-14.33333c0,-7.91917 6.41417,-14.33333 14.33333,-14.33333z"></path></g></g></svg>
+										</a> 
+									</div>
+									<div class="uk-text-right">
+										<a class="uk-link-reset uk-text-small " href="#modal-center" uk-toggle style="color: #a69595 !important">Forgot your password?</a>
+									</div>
+
+									<div  *ngIf="Formlogin.controls['password'].invalid && (Formlogin.controls['password'].dirty || Formlogin.controls['password'].touched )" class="uk-text-meta uk-text-danger uk-margin-small-left">
+										<span *ngIf="Formlogin.controls['password'].errors.required" class="uk-margin-small-left">
+										  Please enter a Password.
+										</span>
+										<span *ngIf="Formlogin.controls['password'].errors.maxlength" class="uk-margin-small-left">
+										  Please enter a Password no more than 16 characters.
+										</span>
+										<span *ngIf="Formlogin.controls['password'].errors.minlength" class="uk-margin-small-left">
+										  Please enter a password at least 6 characters.
+										</span>
+									 </div>
+								</div>
+								<div class="uk-margin-small-left" >
+									<label><input class="uk-checkbox" type="checkbox" formControlName="rememberLogin"  checked> Keep me logged in</label>
+								</div>
+								<div class="uk-margin-top" >			
+									<button [disabled]="!Formlogin.valid" class="uk-button uk-button-primary uk-width-1-1  "  type="submit">Log in</button>							
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="uk-width-1-2@s uk-flex uk-flex-middle uk-flex-center uk-first-columns uk-padding-top">
+
+					<img height="330" src="../../../../../assets/img/undraw_learning_2q1h.svg" alt="img">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<!-- model password reset -->
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+		<button class="uk-modal-close-default" type="button" uk-close></button>
+		
+		<form class="uk-padding"  [formGroup]="FormForgetPassword" (ngSubmit)="forgetPassword(FormForgetPassword.value)" >
+			<div class="uk-margin">
+				<div class="uk-inline uk-width-1-1">
+					<span class="uk-form-icon" uk-icon="icon: mail"></span>
+					<input [ngClass]="{'uk-form-danger': (FormForgetPassword.controls['email'].invalid && FormForgetPassword.controls['email'].touched), 'uk-form-success':FormForgetPassword.controls['email'].valid }" class="uk-input " type="text" placeholder="E-mail" name="email" formControlName="email"  required>
+				</div>
+				<div  *ngIf="FormForgetPassword.controls['email'].invalid &&(FormForgetPassword.controls['email'].dirty || FormForgetPassword.controls['email'].touched )"
+					class="uk-text-meta uk-text-danger uk-margin-small-left">
+					<span *ngIf="FormForgetPassword.controls['email'].errors.required" class="uk-margin-small-left">
+						Please enter a Email. 
+					</span>
+					<span *ngIf="FormForgetPassword.controls['email'].dirty" class="uk-margin-small-left">
+						Your a Email Invalid .
+					</span>
+
+				</div>
+
+			</div>
+			<div class="uk-text-right">
+				<button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+				<button class="uk-button uk-button-primary" type="submit">Save</button>
+			</div>
+		</form>
+	
+    </div>
+</div>

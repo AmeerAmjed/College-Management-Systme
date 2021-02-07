@@ -1,0 +1,135 @@
+
+.uk-active {
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 2.5rem;
+  }
+  
+  
+  .co > li > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 80px;
+    padding: 0px 60px;
+    color: #ffffff;
+  }
+  
+  .navbar-nav > li > a {
+    color: rgb(255, 255, 255);
+  }
+  
+  
+  
+  
+  section {
+    background: yellow;
+    /* padding: 10px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-basis: 20%; */
+    /* height:calc(100vh – 66px); */
+    /* background: red; */
+  }
+  
+  .dashboardContainer {
+    display: flex;
+    align-items: stretch;
+    height: 100vh;
+  }
+  
+  .dashboard-content {
+    width: 100%;
+  }
+  
+  #dashboardNav {
+    height: 84px;
+    width: 100%;
+    background: purple;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dashboard-wrap-content {
+    display: flex;
+    height: 100%;
+    /* height: 89vh */
+  }
+  @media (max-width: 640px) {
+    .uk-first-columns {
+      order: -1 !important;
+    }
+    .uk-first-columns img {
+      margin-left: 20px;
+    }
+    .uk-text-cente {
+      text-align: center !important;
+  }
+  }
+  .rightBar {
+    width: 100%;
+    background: yellow;
+    margin-left: auto;
+    margin-right: auto;
+  
+    /* padding: 10px;
+      display: flex; */
+    /* display: flex; */
+    display: table-cell;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+  }
+  .navbar h4 {
+    text-align: center;
+  }
+  #content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+  }
+  
+  /* #sidebar {
+      min-width: 100px;
+      max-width: 100px;
+      background: red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    } */
+  
+  .dashboard-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  h4 {
+    font-weight: bold;
+    background: #fff;
+    margin-bottom: 0;
+  }
+  
+  .body {
+    display: block;
+    align-items: stretch;
+    height: 79vh;
+  }
+  
+  .uk-button-default {
+    border: none;
+    color: white;
+    background-color: #fede50;
+    font-weight: 800;
+    font-family: "Baloo2-Medium" !important;
+  }
+  .uk-button-default:hover {
+    border: 2px solid #22588f;
+    background-color: white !important;
+    color: #22588f;
+   
+  }
+  
