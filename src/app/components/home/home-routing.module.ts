@@ -7,7 +7,7 @@ const homeRoutes: Route[] = [
   {
     path : 'home',
     component : HomeComponent,
-    canActivate: [HomeGuard],
+    // canActivate: [HomeGuard],
 
   },
   // {

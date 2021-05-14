@@ -9,7 +9,7 @@ export const Dashboardoutes: Route[] = [
   {
     path: 'admin',
     component: DashboardComponent,
-    canActivate: [DashboardGuard],
+    // canActivate: [DashboardGuard],
     data: {
       role: 'admin'
     },

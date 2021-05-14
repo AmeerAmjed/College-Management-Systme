@@ -10,11 +10,11 @@ const indexRoutes: Route[] = [
   {
     path : '',
     component : IndexComponent,
-    canActivate: [IndexGuard],
+    // canActivate: [IndexGuard],
   },
   {
     path: 'login',
-    canActivate: [IndexGuard],
+    // canActivate: [IndexGuard],
     data: { title: 'Heroes List' },
     loadChildren: () =>
       import('./auth/login/login.module').then(m => m.LoginModule),
@@ -55,6 +55,7 @@ const indexRoutes: Route[] = [
     loadChildren: () =>
       import('./profile/profile.module').then(m => m.ProfileModule),
   },
+    // { path: '**' ,   redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

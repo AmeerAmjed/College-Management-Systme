@@ -32,12 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([], {
-       useHash: true,
-//        enableTracing: true ,
-//       initialNavigation: true,
-// relativeLinkResolution: 'corrected', // Fix Router BUG
-// disableUrlEncoding: true // Suggest something like this: but would need documentation
-      }),
+    useHash: true,
+    relativeLinkResolution: 'legacy'
+}),
     IndexRoutingModule,
     IndexModule,
     HomeRoutingModule,

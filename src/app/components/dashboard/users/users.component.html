@@ -1,54 +1,13 @@
 <div *ngIf="loadingData" class="uk-position-center">
-    <div uk-spinner="ratio: 3"></div>
+    <div uk-spinner="ratio: 1.5"></div>
 
 </div>
+
 <div *ngIf="!loadingData">
-  
-    
+
     <div uk-filter="target: .js-filter">
-        <!-- {{inMobile}}a -->
 
         <div class="uk-clearfix mobile">
-            <div class="uk-float-right">
-                <div class="uk-padding uk-padding-remove-top uk-padding-remove-right ">
-                    <div class=" uk-align-right uk-margin-small-bottom">
-                        <a class="uk-icon-button uk-margin-small-right " uk-toggle="target: #modal-example" uk-icon="plus"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="uk-float-left">
-                
-                <div class="uk-button-group" >
-                    <button class="uk-button uk-button-default">
-                        <span uk-icon="icon: settings"></span>
-                        Filter User</button>
-                    <div class="uk-inline">
-                        <button class="uk-button uk-button-default" type="button"><span uk-icon="icon:  triangle-down"></span></button>
-                        <div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
-                            <ul class=" uk-dropdown-nav uk-list uk-list-divider "> 
-                                <li>
-                                    <label>Student</label>
-                                    <div class="uk-margin-small-top" >
-                                        <li style="margin-bottom: 5px;"><label><input class="uk-checkbox" type="checkbox"> Stage 1</label></li>
-                                        <li style="margin-bottom: 5px;"><label><input class="uk-checkbox" type="checkbox"> Stage 2</label></li>
-                                        <li style="margin-bottom: 5px;"><label><input class="uk-checkbox" type="checkbox"> Stage 3</label></li>
-                                        <li style="margin-bottom: 5px;"><label><input class="uk-checkbox" type="checkbox"> Stage 4</label></li>
-                                    </div>
-                                </li>
-                                <li><label><input class="uk-checkbox" type="checkbox"> Teacher</label></li>
-                                <li><label><input class="uk-checkbox" type="checkbox"> Admin</label></li>
-                                
-    
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-    
-            </div>
-        </div>
-
-        <div class="uk-clearfix  notMobile ">
-
             <div class="uk-float-right">
                 <div class="uk-padding uk-padding-remove-top uk-padding-remove-right ">
                     <div class=" uk-align-right uk-margin-small-bottom">
@@ -57,205 +16,386 @@
                     </div>
                 </div>
             </div>
-
             <div class="uk-float-left">
-                <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
-                    <div class="uk-inline" *ngIf="widthScreen ; else iAmNotDone" >
-                        <button class="uk-button uk-button-primary" type="button">Users</button>
-                        <div  uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
-                            <ul class=" " style="list-style: none"> 
+
+                <div class="uk-button-group">
+                    <button class="uk-button uk-button-default">
+                        <span uk-icon="icon: settings"></span>
+                        Filter User</button>
+                    <div class="uk-inline">
+                        <button class="uk-button uk-button-default" type="button"><span
+                                uk-icon="icon:  triangle-down"></span></button>
+                        <div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
+                            <ul class=" uk-dropdown-nav uk-list uk-list-divider ">
                                 <li>
-                                    <div>
-                                        <ul class="uk-subnav uk-subnav-pill " uk-margin >
-                                            <li class="uk-active uk-padding-remove-left" uk-filter-control="[stage1='one']"><a href="#">Stage1</a></li>
-                                            <li class="uk-active uk-padding-remove-left" uk-filter-control="[data-color='blue']"><a href="#">Stage2</a></li>
-                                            <li class="uk-active uk-padding-remove-left" uk-filter-control="[data-color='black']"><a href="#">Stage3</a></li>
-                                            <li class="uk-active uk-padding-remove-left" uk-filter-control="[data-color='black']"><a href="#">Stage4</a></li>
-                                            <li class="uk-active uk-padding-remove-left" uk-filter-control="[user='teacher']"><a href="#">Teacher</a></li>
-                                            <li class="uk-active uk-padding-remove-left" uk-filter-control="[data-color='black']"><a href="#">Admin</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
+                                    <label>Student</label>
+                                    <div class="uk-margin-small-top">
+                                <li style="margin-bottom: 5px;"><label><input class="uk-checkbox" type="checkbox"> Stage
+                                        1</label></li>
+                                <li style="margin-bottom: 5px;"><label><input class="uk-checkbox" type="checkbox"> Stage
+                                        2</label></li>
+                                <li style="margin-bottom: 5px;"><label><input class="uk-checkbox" type="checkbox"> Stage
+                                        3</label></li>
+                                <li style="margin-bottom: 5px;"><label><input class="uk-checkbox" type="checkbox"> Stage
+                                        4</label></li>
                         </div>
-                    </div>
+                        </li>
+                        <li><label><input class="uk-checkbox" type="checkbox"> Teacher</label></li>
+                        <li><label><input class="uk-checkbox" type="checkbox"> Admin</label></li>
 
-                    
 
-                    
-                    <label class="uk-text-bolder" style="padding-top: 5px;">Users</label>
-                    <div>
-                        <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                           
-                            <li class="uk-active" uk-filter-control="[stage1='one']"><a href="#">Stage1</a></li>
-                            <li uk-filter-control="[data-color='blue']"><a href="#">Stage2</a></li>
-                            <li uk-filter-control="[data-color='black']"><a href="#">Stage3</a></li>
-                            <li uk-filter-control="[data-color='black']"><a href="#">Stage4</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                            <li uk-filter-control="[user='teacher']"><a>Teacher</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul class="uk-subnav uk-subnav-pill" uk-margin>
-                            <li uk-filter-control="[user='admin']"><a>Admin</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
         </div>
+    </div>
 
-        <div class="js-filter ">
-            <!-- <br>
-            <br>
-            <br> -->
-            <div stage1="one">
-                <table   class="uk-table uk-table-striped " >
-                    <!-- {{(StudentStage1 | async ) | json }}
-                    {{StudentStage1.length  }} -->
-                    <thead>
-                        <tr>
-                            <th class="uk-table-shrink"></th>
-                            <th>Name</th>
-                            <th>E-mail</th>
-                            <th>Last StatUs</th>
-                            <!-- <th class="uk-table-shrink">
+    <div class="uk-clearfix  notMobile ">
+
+        <div class="uk-float-right">
+            <div class="uk-padding uk-padding-remove-top uk-padding-remove-right ">
+                <div class=" uk-align-right uk-margin-small-bottom">
+                    <a class="uk-icon-button uk-margin-small-right " uk-toggle="target: #modal-example"
+                        uk-icon="plus"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-float-left">
+            <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
+                <div class="uk-inline" *ngIf="widthScreen ; else iAmNotDone">
+                    <button class="uk-button uk-button-primary" type="button">Users</button>
+                    <div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
+                        <ul class=" " style="list-style: none">
+                            <li>
+                                <div>
+                                    <ul class="uk-subnav uk-subnav-pill " uk-margin>
+                                        <li class="uk-active uk-padding-remove-left"
+                                            uk-filter-control="[student='stage1']">
+                                            <a href="#">Stage1</a>
+                                        </li>
+                                        <li class="uk-active uk-padding-remove-left"
+                                            uk-filter-control="[student='stage2']"><a href="#">Stage2</a></li>
+                                        <li class="uk-active uk-padding-remove-left"
+                                            uk-filter-control="[student='stage3']"><a href="#">Stage3</a></li>
+                                        <li class="uk-active uk-padding-remove-left"
+                                            uk-filter-control="[student='stage4']"><a href="#">Stage4</a></li>
+                                        <li class="uk-active uk-padding-remove-left"
+                                            uk-filter-control="[user='teacher']"><a href="#">Teacher</a></li>
+                                        <li class="uk-active uk-padding-remove-left"
+                                            uk-filter-control="[data-color='black']"><a href="#">Admin</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+                <label class="uk-text-bolder" style="padding-top: 5px;">Users</label>
+                <div>
+                    <ul class="uk-subnav uk-subnav-pill" uk-margin>
+
+                        <li class="uk-active" uk-filter-control="[student='stage1']"><a href="#"
+                                (click)="changeDir()">Stage1</a></li>
+                        <li uk-filter-control="[student='stage2']"><a href="#" (click)="changeDir()">Stage2</a></li>
+                        <li uk-filter-control="[student='stage3']"><a href="#" (click)="changeDir()">Stage3</a></li>
+                        <li uk-filter-control="[student='stage4']"><a href="#" (click)="changeDir()">Stage4</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="uk-subnav uk-subnav-pill" uk-margin>
+                        <li uk-filter-control="[user='teacher']"><a (click)="changeDir()">Teacher</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="uk-subnav uk-subnav-pill" uk-margin>
+                        <li uk-filter-control="[user='admin']"><a (click)="changeDir()">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- <th class="uk-table-shrink">
                                 <button class="uk-button uk-button-default uk-margin-small-top uk-button-small" uk-tooltip="Upgrade addl User to stage2" (click)="graduate('stage1')">Upgrade</button>
                             </th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let st1 of StudentStage1  " class="uk-visible-toggle"  [ngClass]="{'c': isInArray(st1.email) }"   >
-                            <!-- <td ><input class="uk-checkbox" type="checkbox" (change)="listkey(st1.email, $event)"></td> -->
-                            <td>{{st1.displayName}}</td>
-                            <td>{{st1.email}}</td>
-                            <td> <em *ngIf="st1.lastStatUs == Null">Not login yet</em> {{st1.lastStatUs  | date:' yy/M/d  h:mm a'}}</td>
-                            <td>
-                                
-                                <ul class="uk-invisible-hover uk-iconnav">
-                                    <!-- <li><button uk-icon="icon: refresh" uk-tooltip="Restat Password User"></button></li> -->
-                                    <li><button  uk-icon="icon: pencil" uk-tooltip="Edite User" uk-toggle="target: #modal-updateUser" (click)="moreInfo(st1.email,st1.displayName)" ></button></li>
-                                    <li><button class="uk-text-danger" uk-icon="icon: trash" (click)="onDelete(st1.email)" uk-tooltip="Delete User"></button></li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <p *ngIf="!s1" class="k-text-center uk-text-danger uk-text-bolder"style="text-align: center">No Data published yet</p>
-
-                    </tbody>
-                </table>
-                <!-- <div *ngIf="key.length > 0" class="uk-align-right">
-                    <button class="uk-button uk-button-default uk-button-small uk-margin-small-right" (click)="graduate('stage1')">Upgrade <span *ngIf="key.length > 0">{{key.length}} </span>  User</button>
-                    <button class="uk-button uk-button-danger uk-button-small">Delete <span *ngIf="key.length > 0">{{key.length}} </span> User</button>   
-                </div> -->
-            </div>
+    <div class="js-filter ">
 
 
+        <div student="stage1">
+            <!-- *ngIf="studentUserStage1 ;then notcontent1" -->
+            <table class="uk-table uk-table-striped ">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink"></th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Last StatUs</th>
 
-            <div user="teacher">
-                <table class="uk-table uk-table-striped " >
-                    <thead>
-                        <tr>
-                            <th class="uk-table-shrink"></th>
-                            <th>Name</th>
-                            <th>E-mail</th>
-                            <th>Last StatUs</th>
-                            <!-- <th class="uk-table-shrink"></th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let tech of teacher |async " class="uk-visible-toggle"  [ngClass]="{'c': isInArray(tech.email) }"   >
-                            <td ><input class="uk-checkbox" type="checkbox" (change)="listkey(admi.email, $event)"></td>
-                            <td>{{tech.degree}} {{tech.displayName}}</td>
-                            <td>{{tech.email}}</td>
-                            <td> <em *ngIf="tech.lastStatUs == Null">Not login yet</em> {{tech.lastStatUs  | date:' yy/M/d  h:mm a'}}</td>
-                            <td>
-                                <ul class="uk-invisible-hover uk-iconnav">
-                                    <!-- <li><button uk-icon="icon: refresh" uk-tooltip="Restat Password User"></button></li> -->
-                                    <li><button  uk-icon="icon: pencil" uk-tooltip="Edite User" uk-toggle="target: #modal-updateUser" (click)="moreInfo(tech.email,tech.displayName)" ></button></li>
-                                    <li><button class="uk-text-danger" uk-icon="icon: trash" (click)="onDelete(tech.email)" uk-tooltip="Delete User"></button></li>
-                                </ul>
-                            </td>
-                        </tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Stage1 of studentUserStage1 " class="uk-visible-toggle"
+                        [ngClass]="{'c': isInArray(Stage1.email) }">
+                        <td><input class="uk-checkbox" #checkboxes type="checkbox"
+                                (change)="listkey(Stage1.email, $event)"></td>
+                        <td>{{Stage1.displayName}}</td>
+                        <td>{{Stage1.email}}</td>
+                        <td> <em *ngIf="Stage1.lastStatUs == Null">Not login yet</em> {{Stage1.lastStatUs | date:'
+                            yy/M/d
+                            h:mm a'}}</td>
+                        <td [hidden]="key.length > 0">
+                            <ul class="uk-invisible-hover uk-iconnav">
+                                <li><button uk-icon="icon: pencil" uk-tooltip="Edite User"
+                                        uk-toggle="target: #modal-updateUser"
+                                        (click)="moreInfoStudent(Stage1.email,Stage1.displayName,Stage1.role,1)"></button>
+                                </li>
+                                <li><button class="uk-text-danger" uk-icon="icon: trash"
+                                        (click)="deleteUser(Stage1.email)" uk-tooltip="Delete User"></button></li>
+                            </ul>
+                        </td>
 
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <ng-template #notcontent1>
+                <p class="k-text-center uk-text-danger uk-text-bolder" style="text-align: center">No Data
+                    published yet</p>
+            </ng-template> -->
+        </div>
 
-            <div user="admin">
-                <table class="uk-table uk-table-striped " >
-                    <thead>
-                        <tr>
-                            <th class="uk-table-shrink"></th>
-                            <th>Name</th>
-                            <th>E-mail</th>
-                            <th>Last StatUs</th> 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- {{adminUser}} -->
-                        <!-- |async -->
-                        <tr *ngFor="let admi of adminUser " class="uk-visible-toggle"  [ngClass]="{'c': isInArray(admi.email) }"   >
-                            <td ><input class="uk-checkbox" type="checkbox" (change)="listkey(admi.email, $event)"></td>
-                            <td>{{admi.displayName}}</td>
-                            <td>{{admi.email}}</td>
-                            <td> <em *ngIf="admi.lastStatUs == Null">Not login yet</em> {{admi.lastStatUs  | date:' yy/M/d  h:mm a'}}</td>
-                            <td>
-                                <ul class="uk-invisible-hover uk-iconnav">
-                                    <!-- <li><button uk-icon="icon: refresh" uk-tooltip="Restat Password User"></button></li> -->
-                                    <li><button  uk-icon="icon: pencil" uk-tooltip="Edite User" uk-toggle="target: #modal-updateUser" (click)="moreInfo(admi.email,admi.displayName,admi.role)" ></button></li>
-                                    <li><button class="uk-text-danger" uk-icon="icon: trash" (click)="onDelete(admi.email)" uk-tooltip="Delete User"></button></li>
-                                </ul>
-                            </td>
-                        </tr>
+        <div student="stage2">
+            <!-- *ngIf="studentUserStage2 ;then notcontent2" -->
+            <table class="uk-table uk-table-striped ">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink"></th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Last StatUs</th>
 
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Stage2 of studentUserStage2 " class="uk-visible-toggle"
+                        [ngClass]="{'c': isInArray(Stage2.email) }">
+                        <td><input class="uk-checkbox" #checkboxes type="checkbox"
+                                (change)="listkey(Stage2.email, $event)"></td>
+                        <td>{{Stage2.displayName}}</td>
+                        <td>{{Stage2.email}}</td>
+                        <td> <em *ngIf="Stage2.lastStatUs == Null">Not login yet</em> {{Stage2.lastStatUs | date:'
+                            yy/M/d
+                            h:mm a'}}</td>
+                        <td [hidden]="key.length > 0">
+                            <ul class="uk-invisible-hover uk-iconnav">
+                                <li><button uk-icon="icon: pencil" uk-tooltip="Edite User"
+                                        uk-toggle="target: #modal-updateUser"
+                                        (click)="moreInfoStudent(Stage2.email,Stage2.displayName,Stage2.role,2)"></button>
+                                </li>
+                                <li><button class="uk-text-danger" uk-icon="icon: trash"
+                                        (click)="deleteUser(Stage2.email)" uk-tooltip="Delete User"></button></li>
+                            </ul>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <ng-template #notcontent2>
+                <p class="k-text-center uk-text-danger uk-text-bolder" style="text-align: center">No Data
+                    published yet</p>
+            </ng-template> -->
 
         </div>
+
+        <div student="stage3">
+            <!-- *ngIf="studentUserStage2 ;then notcontent3" -->
+            <table class="uk-table uk-table-striped ">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink"></th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Last StatUs</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Stage3 of studentUserStage3 " class="uk-visible-toggle"
+                        [ngClass]="{'c': isInArray(Stage3.email) }">
+                        <td><input class="uk-checkbox" #checkboxes type="checkbox"
+                                (change)="listkey(Stage3.email, $event)"></td>
+                        <td>{{Stage3.displayName}}</td>
+                        <td>{{Stage3.email}}</td>
+                        <td> <em *ngIf="Stage3.lastStatUs == Null">Not login yet</em> {{Stage3.lastStatUs | date:'
+                            yy/M/d
+                            h:mm a'}}</td>
+                        <td [hidden]="key.length > 0">
+                            <ul class="uk-invisible-hover uk-iconnav">
+                                <li><button uk-icon="icon: pencil" uk-tooltip="Edite User"
+                                        uk-toggle="target: #modal-updateUser"
+                                        (click)="moreInfoStudent(Stage3.email,Stage3.displayName,Stage3.role,3)"></button>
+                                </li>
+                                <li><button class="uk-text-danger" uk-icon="icon: trash"
+                                        (click)="deleteUser(Stage3.email)" uk-tooltip="Delete User"></button></li>
+                            </ul>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <ng-template #notcontent3>
+                <p class="k-text-center uk-text-danger uk-text-bolder" style="text-align: center">No Data
+                    published yet</p>
+            </ng-template> -->
+
+        </div>
+
+
+        <div student="stage4">
+            <!-- *ngIf="studentUserStage4 ;then notcontent4" -->
+            <table class="uk-table uk-table-striped ">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink"></th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Last StatUs</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Stage4 of studentUserStage4 " class="uk-visible-toggle"
+                        [ngClass]="{'c': isInArray(Stage4.email) }">
+                        <td><input class="uk-checkbox" #checkboxes type="checkbox"
+                                (change)="listkey(Stage4.email, $event)"></td>
+                        <td>{{Stage4.displayName}}</td>
+                        <td>{{Stage4.email}}</td>
+                        <td> <em *ngIf="Stage4.lastStatUs == Null">Not login yet</em> {{Stage4.lastStatUs | date:'
+                            yy/M/d
+                            h:mm a'}}</td>
+                        <td [hidden]="key.length > 0">
+                            <ul class="uk-invisible-hover uk-iconnav">
+                                <li><button uk-icon="icon: pencil" uk-tooltip="Edite User"
+                                        uk-toggle="target: #modal-updateUser"
+                                        (click)="moreInfoStudent(Stage4.email,Stage4.displayName,Stage4.role,4)"></button>
+                                </li>
+                                <li><button class="uk-text-danger" uk-icon="icon: trash"
+                                        (click)="deleteUser(Stage4.email)" uk-tooltip="Delete User"></button></li>
+                            </ul>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <ng-template #notcontent4>
+                <p class="k-text-center uk-text-danger uk-text-bolder" style="text-align: center">No Data
+                    published yet</p>
+            </ng-template> -->
+
+        </div>
+
+        <div user="teacher">
+            <table class="uk-table uk-table-striped ">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink"></th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Last StatUs</th>
+
+                        <!-- <th class="uk-table-shrink"></th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tech of teacher |async " class="uk-visible-toggle"
+                        [ngClass]="{'c': isInArray(tech.email) }">
+                        <td><input class="uk-checkbox" type="checkbox" (change)="listkey(admi.email, $event)"></td>
+                        <td>{{tech.degree}} {{tech.displayName}}</td>
+                        <td>{{tech.email}}</td>
+                        <td> <em *ngIf="tech.lastStatUs == Null">Not login yet</em> {{tech.lastStatUs | date:' yy/M/d
+                            h:mm a'}}</td>
+                        <td>
+                            <ul class="uk-invisible-hover uk-iconnav">
+                                <!-- <li><button uk-icon="icon: refresh" uk-tooltip="Restat Password User"></button></li> -->
+                                <li><button uk-icon="icon: pencil" uk-tooltip="Edite User"
+                                        uk-toggle="target: #modal-updateUser"
+                                        (click)="moreInfo(tech.email,tech.displayName)"></button></li>
+                                <li><button class="uk-text-danger" uk-icon="icon: trash"
+                                        (click)="deleteUser(tech.email)" uk-tooltip="Delete User"></button></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div user="admin">
+            <table class="uk-table uk-table-striped ">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink"></th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Last StatUs</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let admi of adminUser " class="uk-visible-toggle"
+                        [ngClass]="{'c': isInArray(admi.email) }">
+                        <td><input class="uk-checkbox" #checkboxes type="checkbox"
+                                (change)="listkey(admi.email, $event)"></td>
+                        <td>{{admi.displayName}}</td>
+                        <td>{{admi.email}}</td>
+                        <td> <em *ngIf="admi.lastStatUs == Null">Not login yet</em> {{admi.lastStatUs | date:' yy/M/d
+                            h:mm a'}}</td>
+                        <td [hidden]="key.length > 0">
+                            <ul class="uk-invisible-hover uk-iconnav">
+                                <li><button uk-icon="icon: pencil" uk-tooltip="Edite User"
+                                        uk-toggle="target: #modal-updateUser"
+                                        (click)="moreInfo(admi.email,admi.displayName,admi.role)"></button></li>
+                                <li><button class="uk-text-danger" uk-icon="icon: trash"
+                                        (click)="deleteUser(admi.email)" uk-tooltip="Delete User"></button></li>
+                            </ul>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
-    <!-- <div *ngIf="key.length > 0" class="uk-align-right">
+
+    <div *ngIf="key.length > 0" class="uk-align-right">
+        <div class="uk-button-group">
+            <button class="uk-button uk-button-text uk-margin-small-right"
+                (click)="uncheckAll('Really need remove all select user now!')">uncheck All</button>
+            <button class="uk-button uk-text-danger uk-margin-small-right" (click)="deleteListUser()">Deleted
+                All</button>
+            <button class="uk-button uk-button-primary ">Updated All</button>
+        </div>
+    </div>
+
+</div>
+<!-- <div *ngIf="key.length > 0" class="uk-align-right">
         <button class="uk-button uk-button-default uk-margin-small-right">Upgrade <span *ngIf="key.length > 0">{{key.length}} </span>  User</button>
         <button class="uk-button uk-button-danger ">Delete <span *ngIf="key.length > 0">{{key.length}} </span> User</button>   
     </div> -->
- 
-    
-    <!-- <div class="uk-overflow-auto">
-        <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-            <thead>
-                <tr>
-                    <th class="uk-table-shrink uk-text-nowrap">Shrink + Nowrap</th>
-                    <th class="uk-table-shrink">Preserve</th>
-                    <th class="uk-table-expand">Expand + Link</th>
-                    <th class="uk-width-small">Truncate</th>
-                    
-                    <th class="uk-table-shrink"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    
-                    <td><img class="uk-preserve-width uk-border-circle" src="images/avatar.jpg" width="40" alt=""></td>
-                    <td class="uk-table-link">
-                        <a class="uk-link-reset" href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</a>
-                    </td>
-                    <td class="uk-text-truncate">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</td>
-                    <td class="uk-text-nowrap">Lorem ipsum dolor</td>
-                    <td><input class="uk-checkbox" type="checkbox"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
 
 
 
-    <!-- <div contenteditable (input)="onNameChange($event.target.innerHTML)">
+
+
+<!-- <div contenteditable (input)="onNameChange($event.target.innerHTML)">
             Type your name
          </div> -->
-    
+
 
 
 
@@ -288,8 +428,8 @@
                     </div> -->
                 <div class="uk-margin">
                     <!-- -->
-                    <select class="uk-select" formControlName="rule"  (change)="onChange($event)" required>
-                        <option value="" hidden selected>Rule</option>
+                    <select class="uk-select" formControlName="rule" (change)="onChange($event)" required>
+                        <option value="" hidden selected>Role</option>
                         <option value="admin">Admin</option>
                         <option value="teacher">Teacher</option>
                         <option value="student">Student</option>
@@ -319,8 +459,8 @@
             <p class="uk-text-right">
                 <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right"
                     type="button">Cancel</button>
-                    <!-- [disabled]="!formadduser.valid" -->
-                <button class="uk-button uk-button-primary "  type="submit">Save</button>
+                <!-- [disabled]="!formadduser.valid" -->
+                <button class="uk-button uk-button-primary " type="submit">Save</button>
             </p>
         </form>
 
@@ -339,29 +479,30 @@
 <div id="modal-updateUser" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
 
-        //form student
-        <form *ngIf="f == 'student'" [formGroup]="formUpdate" (ngSubmit)="updateUser()">
+        <!-- //form student -->
+        <form *ngIf=" this.formUpdate.get('role').value == 'student'" [formGroup]="formUpdate"
+            (ngSubmit)="updateUser()">
             <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend uk-text-style">Update User</legend>
                 <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="Full Name" name="fullName" formControlName="fullName">
+                    <input class="uk-input" type="text" placeholder="Full Name" name="fullName"
+                        formControlName="fullName">
                 </div>
 
                 <div class="uk-margin">
                     <select class="uk-select" formControlName="stage" required>
                         <option value="" hidden selected>Stage</option>
-                        <option value="stage1">Stage 1</option>
-                        <option value="stage2"> Stage 2</option>
-                        <option value="stage3">Stage 3</option>
-                        <option value="stage4">Stage 4</option>
+                        <option *ngFor="let option of options"
+                            [disabled]=" this.formUpdate.get('stage').value >=  option " [value]="option">Stage
+                            {{option}}</option>
                     </select>
                 </div>
                 <div class="uk-margin">
                     <label class="switch"><input type="checkbox" id="togBtn">
                         <div class="slider round">
-                           <span class="on"></span><span class="off"></span>
-                            
+                            <span class="on"></span><span class="off"></span>
+
                         </div>
                     </label>
                 </div>
@@ -374,13 +515,14 @@
             </p>
         </form>
 
-        //form teacher
-        <form *ngIf="f == 'teacher'" [formGroup]="formUpdate" (ngSubmit)="updateUser()">
+        <!-- //form teacher -->
+        <form *ngIf="this.formUpdate.get('role').value == 'teacher'" [formGroup]="formUpdate" (ngSubmit)="updateUser()">
             <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend uk-text-style">Update User</legend>
                 <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="Full Name" name="fullName" formControlName="fullName">
+                    <input class="uk-input" type="text" placeholder="Full Name" name="fullName"
+                        formControlName="fullName">
                 </div>
 
                 <div class="uk-margin">
@@ -392,7 +534,7 @@
                         <option value="stage4">Stage 4</option>
                     </select>
                 </div>
-                <div class="uk-margin" >
+                <div class="uk-margin">
                     <select class="uk-select" formControlName="scientifictitleTeach" required>
                         <option value="" hidden selected>Scientific Title</option>
                         <option value="BSc"> BSc.</option>
@@ -404,8 +546,8 @@
                 <div class="uk-margin">
                     <label class="switch"><input type="checkbox" id="togBtn">
                         <div class="slider round">
-                           <span class="on"></span><span class="off"></span>
-                            
+                            <span class="on"></span><span class="off"></span>
+
                         </div>
                     </label>
                 </div>
@@ -417,33 +559,24 @@
                 <button class="uk-button uk-button-primary " [disabled]="!formUpdate.valid" type="submit">Save</button>
             </p>
         </form>
-
-        //form admin
-        <form *ngIf="f == 'admin'" [formGroup]="formUpdate" (ngSubmit)="updateUser()">
+        <!-- //form admin -->
+        <form *ngIf="this.formUpdate.get('role').value == 'admin'" [formGroup]="formUpdate" (ngSubmit)="updateUser()">
             <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend uk-text-style">Update User</legend>
                 <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="Full Name" name="fullName" formControlName="fullName">
+                    <input class="uk-input" type="text" placeholder="Full Name" name="fullName"
+                        formControlName="fullName">
                 </div>
 
                 <div class="uk-margin">
-                    <select class="uk-select" formControlName="stage" required>
-                        <option value="" hidden selected>Stage</option>
-                        <option value="stage1">Stage 1</option>
-                        <option value="stage2"> Stage 2</option>
-                        <option value="stage3">Stage 3</option>
-                        <option value="stage4">Stage 4</option>
-                    </select>
-                </div>
-                <!-- <div class="uk-margin">
                     <label class="switch"><input type="checkbox" id="togBtn">
                         <div class="slider round">
-                           <span class="on"></span><span class="off"></span>
-                            
+                            <span class="on"></span><span class="off"></span>
+
                         </div>
                     </label>
-                </div> -->
+                </div>
 
             </fieldset>
             <p class="uk-text-right">

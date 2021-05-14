@@ -7,7 +7,6 @@ import { firebase } from '@firebase/app'
 import '@firebase/auth'
 import { Observable } from 'rxjs';
 import UIkit from 'uikit'
-// import { SetpasswordComponent } from '../components/index/auth/setpassword/setpassword.component';
 
 @Injectable({
   providedIn: 'root'
@@ -41,13 +40,6 @@ export class AuthService {
 
     rememberLogin ? stateLogin = firebase.auth.Auth.Persistence.LOCAL : stateLogin = firebase.auth.Auth.Persistence.SESSION
 
-    // if (rememberLogin) {
-    //   stateLogin = firebase.auth.Auth.Persistence.LOCAL
-    //   console.log("LOCAL"+rememberLogin)
-    // } else {
-    //   stateLogin = firebase.auth.Auth.Persistence.SESSION
-    //   console.log("SESSION"+rememberLogin)
-    // }
 
     firebase.auth().setPersistence(stateLogin).then(
       () => {
@@ -60,8 +52,8 @@ export class AuthService {
               // firebase.auth().currentUser.metadata.creationTime === firebase.auth().currentUser.metadata.lastSignInTime
               if (!user.user.emailVerified) {
                 // user.user.sendEmailVerification();
-
-                this.router.navigate(['/setpassword'], { queryParams: { token: user.user.refreshToken, id: user.user.uid }, fragment: 'newUser' });
+                this.router.navigate(['home']);
+                // this.router.navigate(['/setpassword'], { queryParams: { token: user.user.refreshToken, id: user.user.uid }, fragment: 'newUser' });
                 // this.router.navigate(['home']);
 
               } else {

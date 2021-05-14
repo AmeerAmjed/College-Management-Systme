@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { UsersService } from '../../../services/users.service';
@@ -11,13 +11,14 @@ import UIkit from 'uikit'
 // import { HomeComponent } from './../home.component';
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { AppComponent } from '../../../app.component';
+import { map, switchMap } from 'rxjs/operators';
+import { Role, Student } from 'src/app/model/enum';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
-  // inputs: ['inMobile'],
 
 })
 
@@ -26,11 +27,17 @@ import { AppComponent } from '../../../app.component';
 export class UsersComponent implements OnInit {
   adminUser;
   studentUser;
+
+  studentUserStage1: any;
+  studentUserStage2: any;
+  studentUserStage3: any;
+  studentUserStage4: any;
+
   teacherUser;
 
   formadduser: FormGroup;
   formUpdate: FormGroup;
-  loadingData: Boolean = false;
+  loadingData: Boolean = true;
 
   num = [];
   stg: Boolean = true;
@@ -41,13 +48,12 @@ export class UsersComponent implements OnInit {
   key = [];
   inMobile
   // data: Array<any[]> = [];
-  f = "student";
   st1;
   data = [];
-  // role: Array<any> = ["admin", "teacher", "student"];
   admin: Array<any>
+  private options: number[] = [1, 2, 3, 4];
+  userInfo
 
-  //  inMobile: boolean; 
   constructor(
     private DashboardService: DashboardService,
     public myapp: AppComponent,
@@ -60,10 +66,10 @@ export class UsersComponent implements OnInit {
   ) {
     this.inMobile = this.myapp.onResize();
     console.log("inMobile" + this.myapp.onResize());
-
+    this.getAllUsers()
     // const res =  this.datas.filter(user => user.roles ==='ROLE_ADMIN');
 
-    console.log(this.key)
+    console.log(this.key.length)
   }
 
   ngOnDestroy() {
@@ -81,7 +87,8 @@ export class UsersComponent implements OnInit {
     });
     this.formUpdate = this._formBuilder.group({
       fullName: ['', Validators.required],
-      stage: ['', Validators.required]
+      stage: ['', Validators.required],
+      role: ['', Validators.required]
     });
 
   }
@@ -108,46 +115,50 @@ export class UsersComponent implements OnInit {
       this.formadduser.addControl('stage', new FormControl('', Validators.required));
     }
   }
+
   getAllUsers() {
-    this.DashboardService.getAllUsers().subscribe(
-      data => {
-        this.data = data
-        // console.log(this.data);
+    return new Promise((resolve, reject) => {
+      this.DashboardService.getAllUsers().subscribe(
+        async data => {
+          this.data = await data
+          this.adminUser = this.data.filter(user => user.role === Role.admin);
+          this.teacherUser = this.data.filter(user => user.role === Role.teacher);
+          this.studentUser = this.data.filter(user => user.role === Role.student);
+          this.studentUserStage1 = this.data.filter(user => ((user.role === Role.student) && (user.stage === Student.stage1)));
+          this.studentUserStage2 = this.data.filter(user => ((user.role === Role.student) && (user.stage === Student.stage2)));
+          this.studentUserStage3 = this.data.filter(user => ((user.role === Role.student) && (user.stage === Student.stage3)));
+          this.studentUserStage4 = this.data.filter(user => ((user.role === Role.student) && (user.stage === Student.stage4)));
+          this.loadingData = false;
 
+          resolve(data);
 
+        }
+      )
 
-        this.adminUser = this.data.filter(user => user.role === Role.admin);
-        this.teacherUser = this.data.filter(user => user.role === Role.teacher);
-        this.studentUser = this.data.filter(user => user.role === Role.student);
+    });
 
-        console.log("adminUser" + this.adminUser);
-        console.log("teacherUser" + this.teacherUser);
-        console.log("studentUser" + this.studentUser);
-
-        // for (const rolee of this.role) {
-        //   for (const iterator of this.data) {
-        //     if (iterator["role"] == rolee) {
-        //       // if(rolee ==  )
-        //       this.admin.push(iterator)
-        //       console.log(rolee + "sssss" + iterator["email"])
-        //       console.log(this.admin)
-
-        //     }
-        //   }
-        // }
-      }
-    )
-    // return this.n = this.DashboardService.getAllUsers.length
-
-    // console.log(this.adminUser);
 
   }
 
+  check(da): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.getAllUsers().then(
+        checked => {
+          console.log(checked)
+          da != null && da != undefined ? resolve(true) : reject(false)
+        }
+      )
+      // console.log('f1');
+      // resolve();
+    });
+
+
+  }
 
   updateUser() {
-    // const displayName = this.formUpdate.controls['fullName'].value
-    // const stage = this.formUpdate.controls['stage'].value;
-
+    const displayName = this.formUpdate.controls['fullName'].value
+    const stage = this.formUpdate.controls['stage'].value;
+console.log(displayName,stage,"sssss")
     // this.db.object(`users/${this.key}`).update({ stage: stage, displayName: displayName }).then(
     //   () => {
     //     UIkit.notification({ message: `Success Update User `, pos: 'bottom-left', status: 'success', timeout: 1000 });
@@ -162,6 +173,7 @@ export class UsersComponent implements OnInit {
   }
 
   con() {
+
     var s = confirm('Are you sure?');
     console.log("ok" + s)
     if (s) {
@@ -169,22 +181,24 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  async onDelete(email) {
+  async deleteUser(email) {
     var s = confirm(`Are you sure? ${email} delete User !!!`);
     if (s) {
       await this.Firestore.collection('users').doc(email).delete().then(
         () => UIkit.notification({ message: `Success Delete User `, pos: 'bottom-left', status: 'success', timeout: 1000 })
       ).catch(error => UIkit.notification({ message: error, pos: 'bottom-left', status: 'danger', timeout: 10000 }))
     }
-    // this.db.list(`users/`).remove($key).then(
-    //   () => {
-    //     UIkit.notification({ message: `Success Delete User `, pos: 'bottom-left', status: 'success', timeout: 1000 });
-    //     this.getUser();
-    //   }
-    // ).catch(error => {
-    //   UIkit.notification({ message: error, pos: 'bottom-left', status: 'danger', timeout: 10000 });
-    //   console.error(error);
-    // });
+  }
+
+  async deleteListUser() {
+    var listUser = confirm(`Are you sure? \nDelete ${this.key.length} Users !!!`);
+    if (listUser) {
+      for (const user of this.key) {
+        await this.Firestore.collection('users').doc(user).delete().then(
+          () => UIkit.notification({ message: `Success Delete all Users `, pos: 'bottom-left', status: 'success', timeout: 1000 })
+        ).catch(error => UIkit.notification({ message: error, pos: 'bottom-left', status: 'danger', timeout: 10000 }));
+      }
+    }
   }
 
 
@@ -262,54 +276,25 @@ export class UsersComponent implements OnInit {
 
 
 
-  moreInfo(email, displayName,role) {
-    // this.formUpdate.controls['fullName'].setValue(displayName);
-    // this.formUpdate.controls['stage'].setValue(email);
+  moreInfo(email, displayName, role) {
+    this.formUpdate.controls['fullName'].setValue(displayName);
+    this.formUpdate.controls['stage'].setValue(email);
+    this.formUpdate.controls['role'].setValue(role);
 
-    // this.key = $key;
 
-console.log(email, displayName,role);
+    console.log(email, displayName, role);
 
-    // if (stage == "stage1") {
-
-    //   for (var i = 0; i < this.StudentStage1.length; i++) {
-    //     if (this.StudentStage1[i]['$key'] == $key) {
-    //       this.formUpdate.controls['fullName'].setValue(this.StudentStage1[i]['displayName']);
-    //       this.formUpdate.controls['stage'].setValue(this.StudentStage1[i]['stage']);
-    //     }
-    //   }
-
-    // } else if (stage == "stage2") {
-
-    //   for (var i = 0; i < this.StudentStage2.length; i++) {
-    //     if (this.StudentStage2[i]['$key'] == $key) {
-    //       this.formUpdate.controls['fullName'].setValue(this.StudentStage2[i]['displayName']);
-    //       this.formUpdate.controls['stage'].setValue(this.StudentStage2[i]['stage']);
-    //     }
-    //   }
-
-    // } else if (stage == "stage3") {
-
-    //   for (var i = 0; i < this.StudentStage3.length; i++) {
-    //     if (this.StudentStage3[i]['$key'] == $key) {
-    //       this.formUpdate.controls['fullName'].setValue(this.StudentStage3[i]['displayName']);
-    //       this.formUpdate.controls['stage'].setValue(this.StudentStage3[i]['stage']);
-    //     }
-    //   }
-
-    // } else if (stage == "stage4") {
-
-    //   for (var i = 0; i < this.StudentStage4.length; i++) {
-    //     if (this.StudentStage4[i]['$key'] == $key) {
-    //       this.formUpdate.controls['fullName'].setValue(this.StudentStage4[i]['displayName']);
-    //       this.formUpdate.controls['stage'].setValue(this.StudentStage4[i]['stage']);
-    //     }
-    //   }
-
-    // }
 
   }
+  moreInfoStudent(email, displayName, role, stage) {
 
+    this.formUpdate.controls['fullName'].setValue(displayName);
+    this.formUpdate.controls['stage'].setValue(stage);
+    this.formUpdate.controls['role'].setValue(role);
+    console.log(email, displayName, role, stage+"this.formUpdate.get('role').value00"+this.formUpdate.get('role').value);
+
+
+  }
 
 
 
@@ -331,20 +316,25 @@ console.log(email, displayName,role);
 
   // To check user in array [Key ] 
   isInArray($key): Boolean {
+    console.log(this.key.length == 0)
     return this.key.indexOf($key) > -1
+  }
+
+  @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
+  uncheckAll(message) {
+    var confirmAction = confirm(message);
+    if (confirmAction == true) {
+      this.checkboxes.forEach((element) => {
+        console.log(element)
+        element.nativeElement.checked = false;
+      });
+      this.key = [];
+    }
+  }
+  changeDir() {
+    if (this.key.length != 0)
+      this.uncheckAll(`Really need change Dir will Remove select ${this.key.length} users now!`);
   }
 
 }
 
-enum Role {
-  admin = "admin",
-  teacher = "teacher",
-  student = "student"
-}
-
-enum Student {
-  stage1 = "stage1",
-  stage2 = "stage2",
-  stage3 = "stage3",
-  stage4 = "stage4"
-}

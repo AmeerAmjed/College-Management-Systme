@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 // import { map } from 'rxjs/internal/operators'
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireObject } from '@angular/fire/database';
 
 @Component({
   selector: 'app-info',
@@ -11,38 +12,49 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class InfoComponent implements OnInit {
 
-  loadingData:Boolean = true  ;
-  count;
+  loadingData: Boolean = true;
+
+  adminUser: number;
+  teacherUser: number;
+  studentUser: number;
+  studentUserStage1: number;
+  studentUserStage2: number;
+  studentUserStage3: number;
+  studentUserStage4: number;
+  graduateUser: number;
+  
   constructor(
     private DashboardService: DashboardService,
     public Firestore: AngularFirestore,
-
-  ) { 
-    // this.date()
-    // this.Firestore.collection<any[]>('users', ref => ref.where('role', '==', 'teacher')).valueChanges()
-    // .subscribe( result => {
-    // console.log(result);
-    // }) 
-
-  }
+  ) { }
 
   ngOnInit(): void {
-    // this.loadingData = false  ;
-    // this.getData();
+    this.getData();
   }
 
-  getData() {
-    this.DashboardService.getCountUsers()
-    .subscribe(async result => {
-      console.log(result);
-     this.count=  result
-      // this.items = result;
-      // this.age_filtered_items = result;
-      // this.name_filtered_items = result;
-    })
+  async getData() {
+    await this.DashboardService.getCountUsers()
+      .then(
+        async datas => {
+          this.adminUser = datas['countAdminUser'];
+          this.teacherUser = datas['countTeacherUser'];
+          this.studentUser = datas['countStudentUser'];
+          this.studentUserStage1 = datas['countStudentUserStage1'];
+          this.studentUserStage2 = datas['countStudentUserStage2'];
+          this.studentUserStage3 = datas['countStudentUserStage3'];
+          this.studentUserStage4 = datas['countStudentUserStage4'];
+          this.loadingData = false;
+        }
+      );
+    // .subscribe(async result => {
+
+    //   this.count = result
+    //         // console.log(Object.entries(this.count));
+
+    //   console.log(typeof( this.count));
+
+    //   this.loadingData = false;
+    // });
   }
-// async date(){
-//   await 
-//   console.log(this.DashboardService.getData().values)
-// }
+
 }
