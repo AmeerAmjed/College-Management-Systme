@@ -6,11 +6,12 @@ export interface Post {
     body: string;
 }
 
-export interface addTopStudent {
+export interface TopStudent {
     $key: string;
     nameStudent: string;
     level: string,
-    average: number
-    date: number;
+    average: number;
+    startYear: number;
+    endYear: number;
 }
 

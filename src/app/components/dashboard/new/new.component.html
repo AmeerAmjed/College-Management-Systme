@@ -43,9 +43,9 @@
     </div>
 
 
-    <div id="totop" class="uk-align-right uk-margin-small-bottom">
+    <!-- <div id="totop" class="uk-align-right uk-margin-small-bottom">
         <a class="uk-icon-button uk-margin-small-right " uk-totop uk-scroll></a>
-    </div>
+    </div> -->
 </div>
 
 
@@ -123,16 +123,16 @@
                 </div>
                 <div class="uk-margin">
                     <input class="uk-input" type="number" placeholder="Average Student" name="average"
-                        formControlName="average" required>
+                        formControlName="average"  (keypress)="number($event)" min="1" max="100" required>
                 </div>
 
                 <div class="uk-margin">
 
                     <input class="uk-input uk-form-width-small" type="number" min="1950" max="{{dateYear}}" step="1"
-                        placeholder="Start Year" />
+                        placeholder="Start Year"  formControlName="startYear" (keypress)="number($event)" required />
                     /
                     <input class="uk-input uk-form-width-small" type="number" min="1950" max="{{dateYear}}" step="1"
-                        placeholder="End Year" />
+                        placeholder="End Year"  formControlName="endYear" (keypress)="number($event)" required />
                 </div>
 
             </fieldset>

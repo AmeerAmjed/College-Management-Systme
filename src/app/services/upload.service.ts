@@ -77,21 +77,7 @@ export class UploadService {
   }
 
 
-  addTopStudent(nameStudent, level, average) {
-    this.db.object(`item/topStudent/${level}`).set({
-      nameStudent: nameStudent,
-      level: level,
-      average: average
-    }).then(
-      () => {
-        UIkit.notification({ message: `Success Add Top Student `, pos: 'bottom-left', status: 'success', timeout: 1000 });
-      }
-    ).catch(error => {
-      UIkit.notification({ message: error, pos: 'bottom-left', status: 'danger', timeout: 10000 });
-    });
 
-
-  }
 
   uploadFile(file) {
     return new Promise((resolve) => {

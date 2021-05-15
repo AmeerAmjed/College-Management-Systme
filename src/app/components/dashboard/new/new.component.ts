@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DashboardService } from '../../../services/dashboard.service';
-
-
-// import { UploadService, posterAdmin } from 'src/app/services/upload/upload.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import UIkit from 'uikit'
 import { Post } from 'src/app/model/post';
@@ -25,13 +22,12 @@ export class NewComponent implements OnInit {
 
   // post: Observable<Post[]>;
   post
-  dateYear  =  new Date().getFullYear()
+  dateYear = new Date().getFullYear()
 
   constructor(
     private _formBuilder: FormBuilder,
     public db: AngularFireDatabase,
     private DashboardService: DashboardService
-    //  private UploadService:UploadService
   ) {
     this.DashboardService.post.subscribe(data => this.post = data);
     this.loadingData = false;
@@ -39,6 +35,7 @@ export class NewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData();
     this.formaddPost = this._formBuilder.group({
       title: ['', Validators.required],
       status: ['', Validators.required],
@@ -48,22 +45,34 @@ export class NewComponent implements OnInit {
       nameStudent: ['', Validators.required],
       level: ['', Validators.required],
       average: ['', Validators.required],
+      startYear: ['', Validators.required],
+      endYear: ['', Validators.required],
     });
   }
 
-
-  addTopStudent() {
-    const nameStudent = this.formaddToStudent.controls['nameStudent'].value  ;
-    const level = this.formaddToStudent.controls['level'].value  ;
-    const average = this.formaddToStudent.controls['average'].value  ;
-    console.log(nameStudent+level+average)
-    // this.UploadService.addTopStudent(nameStudent,level,average);
-    UIkit.modal("#modal-topStudent").hide(); 
-    this.formaddToStudent.controls['nameStudent'].setValue("");
-    this.formaddToStudent.controls['level'].setValue("");
-    this.formaddToStudent.controls['average'].setValue("");
+  async getData() {
+    await this.DashboardService.getTopStudent();
+    
 
   }
+
+  addTopStudent() {
+    const nameStudent = this.formaddToStudent.controls['nameStudent'].value;
+    const level = this.formaddToStudent.controls['level'].value;
+    const average = this.formaddToStudent.controls['average'].value;
+    const startYear = this.formaddToStudent.controls['startYear'].value;
+    const endYear = this.formaddToStudent.controls['endYear'].value;
+    this.DashboardService.addTopStudent(nameStudent, level, average, startYear, endYear);
+    UIkit.modal("#modal-topStudent").hide();
+    this.formaddToStudent.reset();
+
+  }
+
+  getTopStudent() {
+
+
+  }
+
   addPost() {
     const title = this.formaddPost.controls['title'].value;
     const status = this.formaddPost.controls['status'].value;
@@ -80,4 +89,11 @@ export class NewComponent implements OnInit {
     let conform = confirm("really need delete post ?")
     conform ? this.DashboardService.deletPost($key) : null;
   }
+
+  number(event): boolean {
+    let patt = /^([0-9])$/;
+    let result = patt.test(event.key);
+    return result;
+  }
+
 }

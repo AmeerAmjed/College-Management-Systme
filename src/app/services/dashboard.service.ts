@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import UIkit from 'uikit'
 import { Role, Student } from '../model/enum';
-import { Post } from '../model/post';
+import { Post, TopStudent } from '../model/post';
 
 
 
@@ -93,9 +93,9 @@ export class DashboardService {
 
 
   addPostAdmin(title, body, status) {
-    let UID = this.Firestore.createId();
-    this.Firestore.collection<Post>('post').doc(UID).set({
-      $key: UID,
+    let key = this.Firestore.createId();
+    this.Firestore.collection<Post>('post').doc(key).set({
+      $key: key,
       title: title,
       status: status,
       data: new Date().valueOf(),
@@ -111,14 +111,43 @@ export class DashboardService {
   getPost(): Observable<any> {
     return this.Firestore.collection<Post>('post', ref => ref.orderBy("data", "desc")).snapshotChanges();
   }
+
+
   deletPost($key) {
     this.Firestore.collection<Post>('post').doc($key).delete().then(() => {
       UIkit.notification({ message: 'Success delete Post ', pos: 'bottom-left', status: 'success', timeout: 2000 });
     }).catch(error => {
       UIkit.notification({ message: `${error}`, status: 'danger', timeout: 2000 });
-    })
-
-
+    });
   }
+
+
+  addTopStudent(nameStudent, level, average, startYear, endYear) {
+    let key = (`${startYear}` + `${endYear}`);
+    this.Firestore.collection<TopStudent>('TopStudent').doc(key).collection(level).add({
+      $key: key,
+      nameStudent: nameStudent,
+      level: level,
+      average: average,
+      startYear: startYear,
+      endYear: endYear,
+    }).then(
+      () => {
+        UIkit.notification({ message: `Success Add Top Student `, pos: 'bottom-left', status: 'success', timeout: 1000 });
+      }
+    ).catch(error => {
+      UIkit.notification({ message: error, pos: 'bottom-left', status: 'danger', timeout: 10000 });
+    });
+  }
+  // : Observable<any>
+
+  getTopStudent() {
+    return this.Firestore.collection<TopStudent>('TopStudent').snapshotChanges().subscribe(
+      async datas => {
+console.log(datas);
+      }
+    );;
+  }
+
 
 }
