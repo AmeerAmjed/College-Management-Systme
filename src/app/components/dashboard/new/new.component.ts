@@ -21,7 +21,7 @@ export class NewComponent implements OnInit {
   // postAdmin = [];
 
   // post: Observable<Post[]>;
-  post
+  post:any;
   dateYear = new Date().getFullYear()
 
   constructor(

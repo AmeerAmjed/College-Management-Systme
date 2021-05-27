@@ -1,3 +1,33 @@
 <app-navbar></app-navbar>
-
-<p>news works!</p>
+<div class="uk-container uk-container-small">
+    <div *ngIf="loadingData" class="uk-position-center">
+        <div uk-spinner="ratio: 1.5"></div>
+    </div>
+    <div *ngIf="!loadingData">
+        <div *ngFor="let item of post"
+            class=" uk-margin uk-margin-auto-left uk-margin-auto-right uk-width-1-2@m  uk-width-1-1@s ">
+            <article *ngIf="item.status == 'public'" class="uk-comment uk-comment-primary uk-visible-toggle "
+                tabindex="-1">
+                <header class="uk-comment-header uk-position-relative">
+                    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img loading="lazy" class="uk-comment-avatar uk-border-rounded"
+                                src="../../../../assets/img/wasit.png" width="50" height="60" alt="imgUser">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h5 class="uk-comment-title uk-margin-remove uk-text-capitalize">UoW Computer Science</h5>
+                            <div class="uk-comment-meta uk-margin-remove-top">
+                                <span uk-icon="world"></span>
+                                <time style="padding-top: 2px">{{item.data | date:' EEEEEE h:mm a '}}</time>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="uk-comment-body">
+                    {{item.title}}
+                    <p>{{item.body}}</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

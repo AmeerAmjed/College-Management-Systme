@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DashboardService } from '../../../services/dashboard.service';
+
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor() { }
+  loadingData: Boolean = true;
+  post: any;
+
+  constructor(
+    private DashboardService: DashboardService
+
+  ) { }
 
   ngOnInit(): void {
+    this.DashboardService.post.subscribe(data => { 
+      this.post = data;
+      this.loadingData = false;
+
+     });
+
+
   }
 
 }

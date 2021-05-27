@@ -142,11 +142,11 @@ export class DashboardService {
   // : Observable<any>
 
   getTopStudent() {
-    return this.Firestore.collection<TopStudent>('TopStudent').snapshotChanges().subscribe(
+    return this.Firestore.collection<TopStudent>('TopStudent').valueChanges().subscribe(
       async datas => {
 console.log(datas);
       }
-    );;
+    );
   }
 
 
