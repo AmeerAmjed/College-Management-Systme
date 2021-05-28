@@ -18,11 +18,10 @@ export class NewsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DashboardService.post.subscribe(data => { 
+    this.DashboardService.post.subscribe(data => {
       this.post = data;
       this.loadingData = false;
-
-     });
+    });
 
 
   }

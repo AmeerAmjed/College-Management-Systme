@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { Observable } from 'rxjs';
-// import { map } from 'rxjs/internal/operators'
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireObject } from '@angular/fire/database';
@@ -46,15 +44,6 @@ export class InfoComponent implements OnInit {
           this.loadingData = false;
         }
       );
-    // .subscribe(async result => {
-
-    //   this.count = result
-    //         // console.log(Object.entries(this.count));
-
-    //   console.log(typeof( this.count));
-
-    //   this.loadingData = false;
-    // });
   }
 
 }

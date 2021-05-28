@@ -107,7 +107,10 @@ export class HomeComponent implements OnInit {
     private usersService: UsersService,
     private _formBuilder: FormBuilder,) {
     firebase.auth().onAuthStateChanged(user => {
-      this.usersService.infoUser(user.email).subscribe(data => this.userInfo = data);
+      this.usersService.infoUser(user.email).subscribe(data => {
+        this.userInfo = data;
+        console.log("data"+data)
+      });
     })
   }
 
