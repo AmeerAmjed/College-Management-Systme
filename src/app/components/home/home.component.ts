@@ -24,7 +24,7 @@ import { userTeacher } from 'src/app/model/user';
 export class HomeComponent implements OnInit {
 
   public innerWidth: any;
-  userInfo: AngularFireObject<Object>;
+  userInfo:any;
   // userInfo: Observable<[]>
   // userInfo: any;
   sli: Boolean = false;
@@ -76,7 +76,6 @@ export class HomeComponent implements OnInit {
   //  } 
   enabled = true;
   spinner = false
-
   dce = true
   postAdmin
   toTop: Boolean = false;
@@ -144,7 +143,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  // addPost(){
+  addPost(){
   //   const nameTech = this.profilea.displayName; 
   //   const stage = this.profilea.stage; 
   //   const img = this.profilea.img; 
@@ -154,9 +153,9 @@ export class HomeComponent implements OnInit {
   //   this.formaddPost.controls['title'].setValue("");
   //   this.formaddPost.controls['body'].setValue("");
   //   // this.post = [];
-  // }
+  }
 
-  // addPdf(){
+  addPdf(){
   //   const nameTech = this.profilea.displayName; 
   //   const stage = this.profilea.stage; 
   //   const title =  this.formaddPdf.controls['title'].value  ;
@@ -173,7 +172,7 @@ export class HomeComponent implements OnInit {
   //   this.pdfC1 = [];
   //   this.pdfC2 = [];
 
-  //   }
+    }
   logout() {
     this.authService.logout();
   }

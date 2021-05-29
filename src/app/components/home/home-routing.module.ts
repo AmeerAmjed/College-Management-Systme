@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
+import { HomeComponent } from './home.component';
 
 
 const homeRoutes: Route[] = [
   {
     path: 'home',
+    
     //  canActivate: [HomeGuard],
+    component : HomeComponent,
 
-    loadChildren: () => import('../home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'homeTech',
