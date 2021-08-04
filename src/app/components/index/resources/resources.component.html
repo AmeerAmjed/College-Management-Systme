@@ -1,6 +1,64 @@
 <app-navbar></app-navbar>
 
 <div class="uk-container uk-container-small">
+  <div *ngIf="loading" class="uk-position-center">
+    <div uk-spinner="ratio: 3"></div>
+  </div>
 
-<p>resourcewwwws worksasss!</p>
+  <section class="uk-margin-medium-top" *ngIf="!loading">
+    <div class="tab">
+      <button [ngClass]="{ active: indexStage === 'stage1' }" (click)="onTabClick('stage1', 'stage')">
+        Stage 1
+      </button>
+      <button [ngClass]="{ active: indexStage === 'stage2' }" (click)="onTabClick('stage2', 'stage')">
+        Stage 2
+      </button>
+      <button [ngClass]="{ active: indexStage === 'stage3' }" (click)="onTabClick('stage3', 'stage')">
+        Stage 3
+      </button>
+      <button [ngClass]="{ active: indexStage === 'stage4' }" (click)="onTabClick('stage4', 'stage')">
+        Stage 4
+      </button>
+    </div>
+    <div class="tab uk-margin-small-top">
+      <button [ngClass]="{ active: indexCourse === 'course1' }" (click)="onTabClick('course1', 'course')">
+        Course 1
+      </button>
+      <button [ngClass]="{ active: indexCourse === 'course2' }" (click)="onTabClick('course2', 'course')">
+        Course 2
+      </button>
+    </div>
+    <table class="uk-table uk-table-divider">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Theoretical</th>
+          <th>Practical</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of resourcesData">
+        <tr *ngIf="filters(data.stage, data.course)">
+          <td>{{ data.nameSubject }}</td>
+          <td>
+            <a href="{{ data.urlTheoretical }}" target="_blank">{{
+              data.titleTheoretical
+              }}</a>
+          </td>
+          <td>
+            <a href="{{ data.urlPracticaltitle }}" target="_blank">{{
+              data.titlePractical
+              }}</a>
+            |
+            <a href="{{ data.urlProgram }}" target="_blank">{{
+              data.titleprogram
+              }}</a>
+          </td>
+        </tr>
+        <p *ngIf="!filters(data.stage, data.course)" class="tab uk-text-center uk-text-danger uk-text-bolder"
+          style="text-align: center">
+          No Data published yet
+        </p>
+      </tbody>
+    </table>
+  </section>
 </div>
