@@ -1,1 +1,428 @@
-<p>teacher works!</p>
+<div *ngIf="loading" class="uk-position-center">
+    <div uk-spinner="ratio: 3"></div>
+</div>
+<section *ngIf="!loading">
+    <nav class="uk-navbar-container one-edge-shadow" uk-navbar>
+        <div class="uk-navbar-left icon">
+            <ul class="uk-navbar-nav">
+                <li style="z-index: 2">
+                    <a (click)="slid()">
+                        <svg *ngIf="!sli" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                            viewBox="0 0 172 172" style="fill: #000000">
+                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                                stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                                font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                                style="mix-blend-mode: normal">
+                                <path d="M0,172v-172h172v172z" fill="none"></path>
+                                <g fill="#939393">
+                                    <path
+                                        d="M21.5,35.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376zM21.5,78.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376zM21.5,121.83333c-2.58456,-0.03655 -4.98858,1.32136 -6.29153,3.55376c-1.30295,2.2324 -1.30295,4.99342 0,7.22582c1.30295,2.2324 3.70697,3.59031 6.29153,3.55376h129c2.58456,0.03655 4.98858,-1.32136 6.29153,-3.55376c1.30295,-2.2324 1.30295,-4.99342 0,-7.22582c-1.30295,-2.2324 -3.70697,-3.59031 -6.29153,-3.55376z">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                        <svg *ngIf="sli" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                            viewBox="0 0 172 172" style="fill: #000000">
+                            <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                                stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                                font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                                style="mix-blend-mode: normal">
+                                <path d="M0,172v-172h172v172z" fill="none"></path>
+                                <g fill="#939393">
+                                    <path
+                                        d="M35.76335,28.59668c-2.91628,0.00077 -5.54133,1.76841 -6.63871,4.47035c-1.09737,2.70194 -0.44825,5.79937 1.64164,7.83336l45.09961,45.09961l-45.09961,45.09961c-1.8722,1.79752 -2.62637,4.46674 -1.97164,6.97823c0.65473,2.51149 2.61604,4.4728 5.12753,5.12753c2.51149,0.65473 5.18071,-0.09944 6.97823,-1.97165l45.09961,-45.09961l45.09961,45.09961c1.79752,1.87223 4.46675,2.62641 6.97825,1.97168c2.5115,-0.65472 4.47282,-2.61605 5.12755,-5.12755c0.65472,-2.5115 -0.09946,-5.18073 -1.97168,-6.97825l-45.09961,-45.09961l45.09961,-45.09961c2.11962,-2.06035 2.75694,-5.21064 1.60486,-7.93287c-1.15207,-2.72224 -3.85719,-4.45797 -6.81189,-4.37084c-1.86189,0.05548 -3.62905,0.83363 -4.92708,2.1696l-45.09961,45.09961l-45.09961,-45.09961c-1.34928,-1.38698 -3.20203,-2.16948 -5.13704,-2.1696z">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li class="uk-margin-small-right">
+                    <a>
+                        <span uk-icon="icon: user"></span>
+                    </a>
+                    <div class="uk-navbar-dropdown" uk-dropdown="mode: click" style="right: 10px !important">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-nav-header">Info User</li>
+                            <li class="uk-text-capitalize">{{ userInfo?.displayName }}</li>
+                            <li>{{ userInfo?.email }}</li>
+                            <br />
+                            <li class="uk-nav-divider"></li>
+                            <li><a (click)="logout()" class="uk-text-danger"> Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <nav *ngIf="sli" class="sidebar open-close-container uk-background-secondary uk-light">
+            <div>
+                <div class="uk-tile uk-padding-small">
+                    <div class="uk-margin-medium-left">
+                        <p class="uk-text-bold uk-text-large">
+                            <span class="uk-divider-vertical" style="padding-left: 5px"></span>
+                            <span class="uk-text-bold uk-text-large">{{
+                                userInfo?.stage
+                                }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <ul class="
+          uk-nav-default uk-nav-parent-icon uk-padding uk-margin-small-bottom
+        " uk-nav>
+                <div class="uk-text-center uk-margin-bottom uk-margin-medium-bottom">
+                    <div>
+                        <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
+                            <div *ngIf="!loadImg">
+                                <img loading="lazy" class="lazy uk-border-circle" width="120"
+                                    src="{{ userInfo?.img }}" />
+                                <div class="
+                    uk-transition-slide-bottom
+                    uk-position-bottom
+                    uk-overlay-primary
+                  ">
+                                    <div class="uk-margin-remove-top" uk-form-custom>
+                                        <input type="file" (change)="img($event); loadImg = true" accept="image/*"
+                                            title="Upload Image" />
+                                        <span class="uk-link"><span uk-icon="icon: cloud-upload;"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="loadImg" class="uk-text-warning" uk-spinner="ratio: 3"></div>
+                        </div>
+                    </div>
+                    <li class="uk-text-bold uk-margin-small-top uk-text-capitalize">
+                        {{ userInfo?.displayName }}
+                    </li>
+                </div>
+
+                <div>
+                    <li>
+                        <div uk-grid>
+                            <div class="uk-width-auto" style="padding-top: 5px">
+                                <a href="{{ userInfo.facebook }}" uk-icon="icon: facebook;ratio: 1.3"></a>
+                                <input #face class="uk-input" type="text" class="contenteditable"
+                                    [ngClass]="{ c: !enabled }" [(ngModel)]="userInfo.facebook"
+                                    value="{{ userInfo.facebook }}" [disabled]="enabled"
+                                    style="border: none; background: transparent" />
+                            </div>
+
+                            <div class="uk-width-expand">
+                                <button *ngIf="enabled" class="uk-button uk-button-link uk-icon-button"
+                                    (click)="changeLinkFace(face.value, userInfo.facebook)">
+                                    <span uk-icon="icon: pencil;"></span>
+                                </button>
+                                <button *ngIf="!enabled" class="uk-button uk-button-link uk-icon-button"
+                                    (click)="changeLinkFace(face.value, userInfo.facebook)">
+                                    <span uk-icon="icon: check; ratio: 1.3"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="uk-margin-small-top">
+                        <div uk-grid>
+                            <span uk-icon="icon: info;ratio: 1.3"></span>
+
+                            <div style="padding-top: 5px; padding-left: 5px !important">
+                                <textarea #dces class="uk-input" type="text" class="contenteditable"
+                                    [ngClass]="{ c: !changeDces }" value="{{ userInfo.description }}"
+                                    [disabled]="changeDces"
+                                    style="border: none; background: transparent; width: 180px"></textarea>
+                            </div>
+
+                            <div class="uk-width-expand">
+                                <button *ngIf="changeDces" class="uk-button uk-button-link uk-icon-button"
+                                    (click)="changeDescription(dces.value, userInfo.description)">
+                                    <span uk-icon="icon: pencil;"></span>
+                                </button>
+                                <button *ngIf="!changeDces" class="uk-button uk-button-link uk-icon-button"
+                                    (click)="changeDescription(dces.value, userInfo.description)">
+                                    <span uk-icon="icon: check; ratio: 1.3"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+
+                <ul uk-accordion>
+                    <!-- class="uk-open" -->
+                    <li>
+                        <a class="uk-accordion-title">Course one</a>
+                        <div class="uk-accordion-content">
+                            <ul class="uk-list uk-list-bullet" style="
+                  max-height: 150px !important;
+                  overflow-y: scroll !important;
+                ">
+                                <!-- <li *ngFor="let pd of pdfC1" class="uk-visible-toggle">
+                                    <p>{{pd.nameSubject}}</p>
+
+                                    <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+
+                                        <a href="{{pd.Theoretical}}" target="_blank">Theoretical</a>
+                                        <a href="{{pd.Practical}}" target="_blank">Practical</a>
+                                        <a href="{{pd.linkprogram}}" target="_blank">Link</a>
+
+                                    </div>
+                                    <span class="uk-hidden-hover uk-text-danger"
+                                        *ngIf="pd.nameTech == userInfo?.displayName"
+                                        class="uk-align-right uk-hidden-hover" uk-icon="trash"
+                                        (click)="deletePdf(pd.$key)" uk-tooltip="Delete PDF"
+                                        style="position:  absolute !important;right: 5px;top: 0px;color: #f0506e !important"></span>
+
+
+
+                                </li> -->
+                                <!-- <li *ngIf="pdfC1.length == 0">
+                                    <p class="k-text-center uk-text-danger uk-text-bolder" style="text-align: center">No
+                                        Data published yet</p>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="uk-accordion-title">Course Twe</a>
+                        <div class="uk-accordion-content">
+                            <ul class="uk-list uk-list-bullet">
+                                <!-- <ul class="uk-list  uk-list-bullet">
+                                    {{pdfC2}}
+                                    <li *ngFor="let pd of pdfC2" class="uk-visible-toggle">
+                                        <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+                                            <span id="toggle-hover" *ngIf="pd.nameTech == userInfo?.displayName"
+                                                uk-icon="trash" (click)="deletePdf(pd.$key)"
+                                                uk-tooltip="Delete PDF"></span>
+                                            <p>{{pd.nameSubject}}</p>
+                                            <a href="{{pd.Theoretical}}" target="_blank">Theoret </a>
+                                            <a href="{{pd.Practical}}" target="_blank">Practical</a>
+                                            <a href="{{pd.linkprogram}}" target="_blank">Link</a>
+                                        </div>
+                                        <span class="uk-hidden-hover uk-text-danger"
+                                            *ngIf="pd.nameTech == userInfo?.displayName"
+                                            class="uk-align-right uk-hidden-hover" uk-icon="trash"
+                                            (click)="deletePdf(pd.$key)" uk-tooltip="Delete PDF"
+                                            style="position:  absolute !important;right: 5px;top: 0px;color: #f0506e !important"></span>
+
+
+                                    </li>
+                                    <li *ngIf="pdfC2.length == 0">
+                                        <p class="k-text-center uk-text-danger uk-text-bolder"
+                                            style="text-align: center">No Data published yet</p>
+                                    </li>
+
+                                </ul> -->
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </ul>
+        </nav>
+        <div class="content-wrapper uk-padding" id="to-top">
+            <div *ngIf="!emailVerified" class="uk-padding uk-child-width-1-3@m uk-grid-small" uk-grid>
+                <div class="uk-margin uk-margin-auto-left uk-margin-auto-right@m">
+                    <div class="uk-card uk-card-default uk-card-small">
+                        <div class="uk-text-center uk-card-body uk-text-warning uk-text-bold">
+                            Please Verified your email ?
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="emailVerified">
+                <div class="uk-align-right uk-margin-small-bottom">
+                    <a class="uk-icon-button uk-margin-small-right" uk-icon="plus"></a>
+                    <div class="uk-navbar-dropdown" uk-dropdown="mode: click">
+                        <ul class="uk-nav uk-navbar-dropdown-nav uk-text-center">
+                            <li class="uk-dropdown-close">
+                                <a uk-icon="file-text" uk-toggle="target: #modal-post">Add post</a>
+                            </li>
+
+                            <li class="uk-dropdown-close">
+                                <a uk-icon="file-pdf" uk-toggle="target: #modal-pdf">Add pdf</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div  *ngFor="let item of post" class="uk-padding@s uk-margin uk-margin-auto-left uk-margin-auto-right uk-margin-small-bottom  uk-width-1-2@l">
+                    <article  class="uk-comment uk-comment-primary uk-visible-toggle " tabindex="-1" >
+                            <header class="uk-comment-header uk-position-relative">
+                                <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <img loading="lazy" class="uk-comment-avatar uk-border-rounded"  src="{{item.image}}" width="50" height="60" alt="imgUser">
+                                    </div>
+                                    <div class="uk-width-expand">
+                                        <h4 class="uk-comment-title uk-margin-remove uk-text-capitalize">{{item.teacher}}</h4>
+                                        <div class="uk-comment-meta uk-margin-remove-top">
+                                                <span  uk-icon="users"></span>
+                                                <time>{{item.data | date:' EEEEEE h:mm a '}}</time>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                <div *ngIf="item.teacher == userInfo.displayName" class="uk-position-top-right uk-position-small uk-hidden-hover">
+                                    <span class="uk-text-danger" uk-icon="trash" (click)="deletePost(item.$key)" uk-tooltip="Delete post"></span>
+                                </div>
+                            </header>
+                            <div class="uk-comment-body">
+                                {{item.title}}
+                                <p>{{item.body}}</p>
+                            </div>
+                        </article>
+                </div>
+                {{ userInfo | json }}
+                {{post | json}}
+            </div>
+        </div>
+    </main>
+</section>
+
+
+
+<!-- This is the modal add post -->
+<div id="modal-post" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <!-- <h2 class="uk-modal-title">Headline</h2> -->
+        <form [formGroup]="formaddPost" (ngSubmit)="addPost()">
+            <fieldset class="uk-fieldset">
+
+                <legend class="uk-legend uk-text-style">Add post</legend>
+
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Title subject" name="title" formControlName="title"
+                        required>
+                </div>
+
+                <div class="uk-margin">
+                    <textarea class="uk-textarea" style="resize: vertical;" rows="5" placeholder="Subject"
+                        formControlName="body" required></textarea>
+                </div>
+
+            </fieldset>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right"
+                    type="button">Cancel</button>
+                <button class="uk-button uk-button-primary  " [disabled]="!formaddPost.valid"
+                    type="submit">Save</button>
+            </p>
+        </form>
+
+    </div>
+</div>
+
+
+<!-- This is the modal add post -->
+<div id="modal-post" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <!-- <h2 class="uk-modal-title">Headline</h2> -->
+        <form [formGroup]="formaddPost" (ngSubmit)="addPost()">
+            <fieldset class="uk-fieldset">
+
+                <legend class="uk-legend uk-text-style">Add post</legend>
+
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Title subject" name="title" formControlName="title"
+                        required>
+                </div>
+
+                <div class="uk-margin">
+                    <textarea class="uk-textarea" style="resize: vertical;" rows="5" placeholder="Subject"
+                        formControlName="body" required></textarea>
+                </div>
+
+            </fieldset>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right"
+                    type="button">Cancel</button>
+                <button class="uk-button uk-button-primary  " [disabled]="!formaddPost.valid"
+                    type="submit">Save</button>
+            </p>
+        </form>
+
+    </div>
+</div>
+
+
+<!-- This is the modal add pdf -->
+<!-- [hidden]="ngForm.submitted"  -->
+<div id="modal-pdf" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <!-- <h2 class="uk-modal-title">Headline</h2> -->
+        <form [formGroup]="formaddPdf" (ngSubmit)="addPdf()" #ngForm="ngForm">
+            <fieldset class="uk-fieldset">
+
+                <legend class="uk-legend uk-text-style">Add pdf</legend>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Subject Name" name="title" formControlName="title"
+                        required>
+                </div>
+
+                <div class="uk-margin">
+                    <select class="uk-select" formControlName="course" required>
+                        <option value="" hidden selected>Courses</option>
+                        <option value="course1">Course one</option>
+                        <option value="course2">Course twe</option>
+                    </select>
+                </div>
+                <div class="js-upload uk-placeholder uk-text-center">
+                    <span [hidden]="load" uk-icon="icon: cloud-upload"></span>
+                    <div *ngIf="!load" uk-form-custom>
+                        <input type="file" (change)="upload($event)" accept=".pdf" title="Theoretical lectures">
+                        <span class="uk-link">File Theoretical lectures</span>
+                    </div>
+
+                    <div *ngIf="load">
+                        {{fileName}}
+                        <span [hidden]="uploads">
+                            Progress: {{ progs  }}%
+                        </span>
+                        Complete
+                        <progress class="uk-progress" value="{{progs}}" max="100"></progress>
+
+                    </div>
+                </div>
+                <!-- <div class="js-upload uk-placeholder uk-text-center">
+                    <span [hidden]="load2" uk-icon="icon: cloud-upload"></span>
+                    <div *ngIf="!load2 && uploads" uk-form-custom>
+                        <input type="file" (change)="uploads2($event)" accept=".pdf" title="Practical lectures">
+                        <span class="uk-link">File Practical lectures</span>
+                    </div>
+
+                    <div *ngIf="load2">
+                        {{fileName2}}
+                        <span [hidden]="uploadss2">
+                            Progress: {{ progs2  }}%
+                        </span>
+                        Complete
+                        <progress class="uk-progress" value="{{progs2}}" max="100"></progress>
+
+                    </div>
+                </div> -->
+                <div class="uk-margin">
+                    <input class="uk-input" type="url" placeholder="Name program Use in practical lectures"
+                        name="nameprogram" formControlName="nameprogram" required>
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="url" placeholder="Link program Use in practical lectures" name="title"
+                        formControlName="link" required>
+                </div>
+
+            </fieldset>
+            <p class="uk-text-right">
+                <!-- [disabled]="!formaddPdf.valid " -->
+                <button #closebutton class="uk-button uk-button-default uk-modal-close uk-margin-small-right"
+                    type="button">Cancel</button>
+                <!-- <button class="uk-button uk-button-primary  " [disabled]="!formaddPdf.valid || !uploads || !uploadss2"
+                    type="submit">Save</button> -->
+            </p>
+        </form>
+
+    </div>
+</div>

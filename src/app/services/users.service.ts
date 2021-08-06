@@ -6,11 +6,21 @@ import { userAdmin, userStudent, userTeacher } from '../model/user';
 import { environment } from './../../environments/environment';
 import { throwError, Observable, Observer, pipe } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+
+import { AngularFireUploadTask } from '@angular/fire/storage/task';
+import { AngularFireStorageReference } from '@angular/fire/storage/ref';
+
 import UIkit from 'uikit'
+import firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+
   private apiUrl = environment.apiUrl;
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,7 +32,7 @@ export class UsersService {
   constructor(
     private http: HttpClient,
     public Firestore: AngularFirestore,
-
+    private FireStorage: AngularFireStorage,
   ) { }
 
 
@@ -39,7 +49,15 @@ export class UsersService {
   infoUser(email: string): Observable<any> {
     return this.Firestore.collection('users').doc(email).valueChanges();
   }
-
+  updateLinKFace(link: string) {
+    this.Firestore.collection('users').doc(firebase.auth().currentUser.email).update({ facebook: link });
+  }
+  updateDescription(Description: string) {
+    this.Firestore.collection('users').doc(firebase.auth().currentUser.email).update({ description: Description });
+  }
+  updateUrlImage(url: string) {
+    this.Firestore.collection('users').doc(firebase.auth().currentUser.email).update({ img: url });
+  }
   addAdmin(data) {
     return this.http.post<userAdmin>(this.apiUrl + 'addAdmin', data, { responseType: 'text' as 'json' })
       .pipe(retry(2), catchError(this.handleError)).subscribe(
@@ -86,6 +104,27 @@ export class UsersService {
 
 
 
+
+  addPost(nameTech, stage, image, title, body) {
+    const key = this.Firestore.createId();
+    return this.Firestore.collection('post').doc(key).set({
+      $key: key,
+      teacher: nameTech,
+      stage: stage,
+      data: new Date().valueOf(),
+      body: body,
+      image: image,
+      title: title,
+      status: "private"
+    });
+  }
+  getPost(): Observable<any> {
+    return this.Firestore.collection('post').valueChanges();
+  }
+
+  deletePost($key:string) {
+    return this.Firestore.collection('post').doc($key).delete();
+  }
 
 
 }

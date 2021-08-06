@@ -1,0 +1,237 @@
+/* Just add this CSS to your project */
+
+.dropzone {
+    border: 4px dashed;
+    border-radius: 5px;
+    background: #8b8181;
+  }
+  
+  .dropzone i {
+    font-size: 5rem;
+  }
+  
+  
+  .fileDraged {
+    color: lightblue;
+    border: 4px default lightblue;
+  }
+  
+  
+  /* #fed330 */
+  .uk-divider-vertical{
+  border-left-color: #fed330;
+  }
+  .uk-nav-divider{
+    border-top-color: #fed330 !important;
+  }
+  .uk-nav-default > li > a:hover{
+    color: #fed330
+  }
+  /* .uk-nav-default li a:nth-child(5):hover{
+    color: #f0506e!important
+  
+  } */
+  * {
+    box-sizing: border-box;
+  }
+  
+  
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    width: 370px;
+    bottom: 0;
+    z-index:1;
+    transition: width 0.3s ease;
+    /* transition: width 2s;
+    transition-timing-function: ease-in-out;
+    transition: all .75s ease-out; */
+  }
+  @-webkit-keyframes slide {
+    0% { left: 0; }
+  }
+  
+  @keyframes slide {
+    100% { left: 0; }
+  }
+  .content-wrapper {
+    margin-left: 370px;
+  }
+  
+  .icon{
+    visibility: hidden;
+  }
+  @media (max-width:760px)  {
+   .icon{
+     visibility: visible !important;
+   }
+    .sidebar {
+      
+      /* width: 270px; */
+      
+    }
+    .content-wrapper {
+      margin-left: 0px !important;
+    }
+    }
+  /* @media (max-width:481px)  {
+    
+    .content-wrapper {
+      margin-left: 0px;
+    }
+  } */
+  /* @media (max-width:801px)  {
+    .sidebar {
+      
+      width: 200px;
+      
+    }
+    .content-wrapper {
+      margin-left: 170px !important;
+    }
+   } */
+  /* @media (max-width:1025px) {  
+    .content-wrapper {
+      margin-left: 270px;
+    }
+    .sidebar {
+      
+      width: 270px;
+      
+    }
+  } */
+  
+  /* .uk-offcanvas-bar-animation {
+    transition: left .3s ease-out;
+  } */
+  
+  
+  
+  
+  .close:hover {
+    text-shadow: 2px 5px 2px #ffffff;
+    color: red;
+  }
+  
+  
+  
+  
+  
+  .uk-navbar-container {
+      /* background: #69696942 !important; */
+      background: white !important;
+  
+  }
+  
+  
+  
+    
+  .uk-navbar-item, .uk-navbar-nav > li > a, .uk-navbar-toggle {
+    min-height: 61px !important; 
+  }
+    
+  .content-wrapper .uk-navbar-right ul > li > a {
+    padding:0px 8px;
+    
+      border-left: 2px solid transparent;
+      transition: all 0.15s ease-out;
+  }
+  .uk-text-style >  span {
+    padding: 8px;
+    /* color: #fed330; */
+    background:   #d0cece ;
+    border-radius: 50%
+   
+  }
+  
+  .uk-tooltip {
+      background-color: white;
+      color: #242C33;
+      box-shadow: 0 2px 12px rgba(50,50,50,0.1);
+  }
+    
+
+  
+  .uk-margin-medium-left {
+    margin-left: 25px !important;
+  }
+  .one-edge-shadow {
+    box-shadow: 2.5px 0.5px 2.5px 2.5px rgba(221, 221, 221, 0.496);
+    /* box-shadow: 0 8px 6px -6px #bdbdbd; */
+  }
+
+
+  .uk-align-right .uk-icon-button {
+    background-color: #fed330
+  }
+
+  /* #fed330 */
+
+
+  /* .uk-accordion-content ul li:hover{
+    background-color: #fed330;
+    color: #333 !important ;
+    height: 20px;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+
+  } */
+
+  .uk-icon-button{
+
+    border-radius: 44px !important;
+
+  }
+  .uk-icon-button span:hover{
+color: #fed330 !important
+  }
+  .uk-button-primary:not(:disabled){
+    background-color: #fed330 !important;
+    }
+  [contenteditable] {
+   
+  outline: 0;
+  width: auto;
+  line-height: 30px;
+}
+.c{
+  color: #fed330 ;
+border-bottom : 1.5px solid #fed330  !important;
+}
+
+
+[contenteditable]:focus {
+  border-color: blue;
+}
+
+
+
+
+.uk-link span{
+  color: #fed330 ;
+}
+
+
+.uk-inline-clip .uk-spinner{
+  color: #fed330 !important;
+
+}
+
+
+.scrol{
+  max-height: 150px !important;
+  overflow-y: scroll!important;
+}
+
+/* #totop{
+  display: none;
+}
+
+@media (max-height:1000px)  {
+#totop{
+  display: inline;
+}
+} */
+
+textarea { resize: none; }

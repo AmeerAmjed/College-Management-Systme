@@ -9,7 +9,6 @@ import { UploadService } from 'src/app/services/upload.service';
 export class ResourcesComponent implements OnInit {
   loading: Boolean = false;
   load4C1: Boolean = true;
-  // resourcesData: Observable<any[]> ;
   resourcesData: any;
   indexStage: String = "stage1";
   indexCourse: String = "course1";

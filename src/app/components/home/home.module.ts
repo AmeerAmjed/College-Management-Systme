@@ -5,7 +5,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
-// import { ContentEditableFormDirective } from './content-editable-form.directive';
 @NgModule({
   declarations: [HomeComponent ],
   imports: [
