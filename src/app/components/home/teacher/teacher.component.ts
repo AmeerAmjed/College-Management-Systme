@@ -25,6 +25,7 @@ export class TeacherComponent implements OnInit {
   profile = [];
   userInfo: AngularFireList<any[]>;
   post: AngularFireList<any[]>;
+  pdf: AngularFireList<any[]>;
   enabled = true;
   changeDces: Boolean = true;
 
@@ -36,14 +37,22 @@ export class TeacherComponent implements OnInit {
   formaddPost: FormGroup;
 
   loadImg: Boolean = false;
+
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   downloadURL: String;
-  fileName: String;
-  uploadProgress;
-  load: Boolean = false;
-  uploads: Boolean = false;
-  progs
+
+  loadTheoretical: Boolean = false;
+  fileNameTheoretical: String;
+  progsTheoretical: number = 0;
+  urlTheoretical: String;
+
+  loadPractical: Boolean = false;
+  fileNamePractical: String;
+  progsPractical: number = 0;
+  urlPractical: String;
+
+
   constructor(
     private authService: AuthService,
     private usersService: UsersService,
@@ -63,12 +72,8 @@ export class TeacherComponent implements OnInit {
         console.log("data" + data)
       });
     });
-    this.usersService.getPost().subscribe(
-      posts => {
-        this.post = posts;
-      }
-
-    )
+    this.usersService.getPost().subscribe(posts =>  this.post = posts);
+    this.usersService.getPdf().subscribe(pdfs =>  this.pdf = pdfs);
     this.innerWidth = window.innerWidth;
     window.innerWidth <= 760 ? this.sli = false : this.sli = true;
 
@@ -120,8 +125,6 @@ export class TeacherComponent implements OnInit {
   }
 
   addPost() {
-
-
     const data = JSON.parse(JSON.stringify(this.userInfo));
     const title = this.formaddPost.controls['title'].value;
     const body = this.formaddPost.controls['body'].value;
@@ -130,10 +133,13 @@ export class TeacherComponent implements OnInit {
     }).catch(error => {
       UIkit.notification({ message: `${error}`, status: 'danger', timeout: 2000 });
     });
+
+
     this.formaddPost.reset();
   }
+
   deletePost($key: string) {
-    const yes = confirm('realy you need deleted this post');
+    const yes = confirm('Realy you need deleted this post');
     if (yes)
       this.usersService.deletePost($key).then(() => {
         UIkit.notification({ message: 'Post deleted ', pos: 'bottom-left', status: 'success', timeout: 2000 });
@@ -143,25 +149,51 @@ export class TeacherComponent implements OnInit {
 
   }
 
+  upload(event, lectures) {
+    lectures == 'Theoreticallectures' ? this.loadTheoretical = true : this.loadPractical = true;
+    const file = event.target.files[0];
+    
+    lectures == 'Theoreticallectures' ? this.fileNameTheoretical = file.name.split('.').push() : this.fileNamePractical = file.name;
+    const id = Math.random().toString(36).substring(2);
+    this.ref = this.FireStorage.ref(id);
+    this.task = this.ref.put(file);
+    this.task.percentageChanges().subscribe(prog => {
+      if (lectures == 'Theoreticallectures') {
+        this.progsTheoretical = Math.floor(prog);
+      } else
+        this.progsPractical = Math.floor(prog);
+    });
+    this.task.snapshotChanges().pipe(
+      finalize(() => {
+        this.ref.getDownloadURL().subscribe(url => {
+          if (lectures == 'Theoreticallectures')
+            this.urlTheoretical = url
+          else
+            this.urlPractical = url
+        });
+      }))
+      .subscribe();
 
-  addPdf() {
-    // const nameTech = this.profilea.displayName; 
-    // const stage = this.profilea.stage; 
-    // const title =  this.formaddPdf.controls['title'].value  ;
-    // const course =  this.formaddPdf.controls['course'].value  ;
-    // const Theoretical = this.downloadURL;
-    // const Practical = this.downloadURL2;
-    // const linkprogram = this.formaddPdf.controls['link'].value  ;
-    // const nameprogram = this.formaddPdf.controls['nameprogram'].value  ;
-    // this.formaddPdf.controls['title'].setValue("");
-    // this.formaddPdf.controls['course'].setValue("");
-    // this.formaddPdf.controls['link'].setValue("");
-    // this.formaddPdf.controls['nameprogram'].setValue("");
-    // this.UploadService.addPdf(nameTech,stage,title,course,Theoretical,Practical,linkprogram,nameprogram);
-    // this.pdfC1 = [];
-    // this.pdfC2 = [];
 
   }
+
+  addPdf() {
+
+    const data = JSON.parse(JSON.stringify(this.userInfo));
+    const subject =  this.formaddPdf.controls['title'].value  ;
+    const course =  this.formaddPdf.controls['course'].value  ;
+    const linkprogram = this.formaddPdf.controls['link'].value  ;
+    const nameprogram = this.formaddPdf.controls['nameprogram'].value  ;
+
+    this.usersService.addPdf(data.displayName, data.stage,subject,course,this.fileNameTheoretical,this.urlTheoretical , this.fileNamePractical,this.urlPractical,linkprogram,nameprogram).then(() => {
+      UIkit.notification({ message: 'Success Upload media PDF ', pos: 'bottom-left', status: 'success', timeout: 2000 });
+    }).catch(error => {
+      UIkit.notification({ message: `${error}`, status: 'danger', timeout: 2000 });
+    });
+    this.formaddPdf.reset();
+  }
+
+
 
 
 

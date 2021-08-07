@@ -251,34 +251,45 @@
                     </div>
                 </div>
 
-                <div  *ngFor="let item of post" class="uk-padding@s uk-margin uk-margin-auto-left uk-margin-auto-right uk-margin-small-bottom  uk-width-1-2@l">
-                    <article  class="uk-comment uk-comment-primary uk-visible-toggle " tabindex="-1" >
-                            <header class="uk-comment-header uk-position-relative">
-                                <div class="uk-grid-medium uk-flex-middle" uk-grid>
-                                    <div class="uk-width-auto">
-                                        <img loading="lazy" class="uk-comment-avatar uk-border-rounded"  src="{{item.image}}" width="50" height="60" alt="imgUser">
-                                    </div>
-                                    <div class="uk-width-expand">
-                                        <h4 class="uk-comment-title uk-margin-remove uk-text-capitalize">{{item.teacher}}</h4>
-                                        <div class="uk-comment-meta uk-margin-remove-top">
-                                                <span  uk-icon="users"></span>
-                                                <time>{{item.data | date:' EEEEEE h:mm a '}}</time>
-                                        </div>
-                                    
+                <div *ngFor="let item of post" class="
+            uk-padding@s
+            uk-margin
+            uk-margin-auto-left
+            uk-margin-auto-right
+            uk-margin-small-bottom
+            uk-width-1-2@l
+          ">
+                    <article class="uk-comment uk-comment-primary uk-visible-toggle" tabindex="-1">
+                        <header class="uk-comment-header uk-position-relative">
+                            <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                                <div class="uk-width-auto">
+                                    <img loading="lazy" class="uk-comment-avatar uk-border-rounded"
+                                        src="{{ item.image }}" width="50" height="60" alt="imgUser" />
+                                </div>
+                                <div class="uk-width-expand">
+                                    <h4 class="uk-comment-title uk-margin-remove uk-text-capitalize">
+                                        {{ item.teacher }}
+                                    </h4>
+                                    <div class="uk-comment-meta uk-margin-remove-top">
+                                        <span uk-icon="users"></span>
+                                        <time>{{ item.data | date: " EEEEEE h:mm a " }}</time>
                                     </div>
                                 </div>
-                                <div *ngIf="item.teacher == userInfo.displayName" class="uk-position-top-right uk-position-small uk-hidden-hover">
-                                    <span class="uk-text-danger" uk-icon="trash" (click)="deletePost(item.$key)" uk-tooltip="Delete post"></span>
-                                </div>
-                            </header>
-                            <div class="uk-comment-body">
-                                {{item.title}}
-                                <p>{{item.body}}</p>
                             </div>
-                        </article>
+                            <div *ngIf="item.teacher == userInfo.displayName"
+                                class="uk-position-top-right uk-position-small uk-hidden-hover">
+                                <span class="uk-text-danger" uk-icon="trash" (click)="deletePost(item.$key)"
+                                    uk-tooltip="Delete post"></span>
+                            </div>
+                        </header>
+                        <div class="uk-comment-body">
+                            {{ item.title }}
+                            <p>{{ item.body }}</p>
+                        </div>
+                    </article>
                 </div>
                 {{ userInfo | json }}
-                {{post | json}}
+                {{ post | json }}
             </div>
         </div>
     </main>
@@ -289,79 +300,43 @@
 <!-- This is the modal add post -->
 <div id="modal-post" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
-        <!-- <h2 class="uk-modal-title">Headline</h2> -->
         <form [formGroup]="formaddPost" (ngSubmit)="addPost()">
             <fieldset class="uk-fieldset">
-
                 <legend class="uk-legend uk-text-style">Add post</legend>
 
                 <div class="uk-margin">
                     <input class="uk-input" type="text" placeholder="Title subject" name="title" formControlName="title"
-                        required>
+                        required />
                 </div>
 
                 <div class="uk-margin">
-                    <textarea class="uk-textarea" style="resize: vertical;" rows="5" placeholder="Subject"
+                    <textarea class="uk-textarea" style="resize: vertical" rows="5" placeholder="Subject"
                         formControlName="body" required></textarea>
                 </div>
-
             </fieldset>
             <p class="uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right"
-                    type="button">Cancel</button>
-                <button class="uk-button uk-button-primary  " [disabled]="!formaddPost.valid"
-                    type="submit">Save</button>
+                <button class="
+            uk-button uk-button-default uk-modal-close uk-margin-small-right
+          " type="button">
+                    Cancel
+                </button>
+                <button class="uk-button uk-button-primary" [disabled]="!formaddPost.valid" type="submit">
+                    Save
+                </button>
             </p>
         </form>
-
     </div>
 </div>
-
-
-<!-- This is the modal add post -->
-<div id="modal-post" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <!-- <h2 class="uk-modal-title">Headline</h2> -->
-        <form [formGroup]="formaddPost" (ngSubmit)="addPost()">
-            <fieldset class="uk-fieldset">
-
-                <legend class="uk-legend uk-text-style">Add post</legend>
-
-                <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="Title subject" name="title" formControlName="title"
-                        required>
-                </div>
-
-                <div class="uk-margin">
-                    <textarea class="uk-textarea" style="resize: vertical;" rows="5" placeholder="Subject"
-                        formControlName="body" required></textarea>
-                </div>
-
-            </fieldset>
-            <p class="uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right"
-                    type="button">Cancel</button>
-                <button class="uk-button uk-button-primary  " [disabled]="!formaddPost.valid"
-                    type="submit">Save</button>
-            </p>
-        </form>
-
-    </div>
-</div>
-
 
 <!-- This is the modal add pdf -->
-<!-- [hidden]="ngForm.submitted"  -->
 <div id="modal-pdf" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
-        <!-- <h2 class="uk-modal-title">Headline</h2> -->
         <form [formGroup]="formaddPdf" (ngSubmit)="addPdf()" #ngForm="ngForm">
             <fieldset class="uk-fieldset">
-
                 <legend class="uk-legend uk-text-style">Add pdf</legend>
                 <div class="uk-margin">
                     <input class="uk-input" type="text" placeholder="Subject Name" name="title" formControlName="title"
-                        required>
+                        required />
                 </div>
 
                 <div class="uk-margin">
@@ -372,57 +347,57 @@
                     </select>
                 </div>
                 <div class="js-upload uk-placeholder uk-text-center">
-                    <span [hidden]="load" uk-icon="icon: cloud-upload"></span>
-                    <div *ngIf="!load" uk-form-custom>
-                        <input type="file" (change)="upload($event)" accept=".pdf" title="Theoretical lectures">
+                    <span [hidden]="loadTheoretical" uk-icon="icon: cloud-upload"></span>
+                    <div *ngIf="!loadTheoretical" uk-form-custom>
+                        <input type="file" (change)="upload($event, 'Theoreticallectures')" accept=".pdf"
+                            title="Theoretical lectures" />
                         <span class="uk-link">File Theoretical lectures</span>
                     </div>
-
-                    <div *ngIf="load">
-                        {{fileName}}
-                        <span [hidden]="uploads">
-                            Progress: {{ progs  }}%
+                    <div *ngIf="loadTheoretical">
+                        {{ fileNameTheoretical }}
+                        <br />
+                        <span *ngIf="progsTheoretical == 100">
+                            Complete: {{ progsTheoretical }}%
                         </span>
-                        Complete
-                        <progress class="uk-progress" value="{{progs}}" max="100"></progress>
-
+                        <progress *ngIf="progsTheoretical != 100" class="uk-progress" value="{{ progsTheoretical }}"
+                            max="100"></progress>
                     </div>
                 </div>
-                <!-- <div class="js-upload uk-placeholder uk-text-center">
-                    <span [hidden]="load2" uk-icon="icon: cloud-upload"></span>
-                    <div *ngIf="!load2 && uploads" uk-form-custom>
-                        <input type="file" (change)="uploads2($event)" accept=".pdf" title="Practical lectures">
+
+                <div class="js-upload uk-placeholder uk-text-center" >
+                    <span [hidden]="loadPractical" uk-icon="icon: cloud-upload"></span>
+                    <div *ngIf="!loadPractical" uk-form-custom>
+                        <input type="file"  [disabled]="progsTheoretical != 100" (change)="upload($event, 'Practicallectures')" accept=".pdf"
+                            title="Practical lectures" />
                         <span class="uk-link">File Practical lectures</span>
                     </div>
-
-                    <div *ngIf="load2">
-                        {{fileName2}}
-                        <span [hidden]="uploadss2">
-                            Progress: {{ progs2  }}%
-                        </span>
-                        Complete
-                        <progress class="uk-progress" value="{{progs2}}" max="100"></progress>
-
+                    <div *ngIf="loadPractical">
+                        {{ fileNamePractical }}
+                        <br />
+                        <span *ngIf="progsPractical == 100"> Complete: {{ progsPractical }}% </span>
+                        <progress *ngIf="progsPractical != 100" class="uk-progress" value="{{ progsPractical }}"
+                            max="100"></progress>
                     </div>
-                </div> -->
+                </div>
+
                 <div class="uk-margin">
                     <input class="uk-input" type="url" placeholder="Name program Use in practical lectures"
-                        name="nameprogram" formControlName="nameprogram" required>
+                        name="nameprogram" formControlName="nameprogram" required />
                 </div>
                 <div class="uk-margin">
                     <input class="uk-input" type="url" placeholder="Link program Use in practical lectures" name="title"
-                        formControlName="link" required>
+                        formControlName="link" required />
                 </div>
-
             </fieldset>
             <p class="uk-text-right">
-                <!-- [disabled]="!formaddPdf.valid " -->
-                <button #closebutton class="uk-button uk-button-default uk-modal-close uk-margin-small-right"
-                    type="button">Cancel</button>
-                <!-- <button class="uk-button uk-button-primary  " [disabled]="!formaddPdf.valid || !uploads || !uploadss2"
-                    type="submit">Save</button> -->
+                <button #closebutton class="
+            uk-button uk-button-default uk-modal-close uk-margin-small-right
+          " type="button">
+                    Cancel
+                </button>
+                <button class="uk-button uk-button-primary  " [disabled]="!formaddPdf.valid || !(progsTheoretical == 100) || !(progsPractical == 100)"
+                    type="submit">Save</button>
             </p>
         </form>
-
     </div>
 </div>

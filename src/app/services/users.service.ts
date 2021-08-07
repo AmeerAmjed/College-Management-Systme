@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { userAdmin, userStudent, userTeacher } from '../model/user';
 import { environment } from './../../environments/environment';
 import { throwError, Observable, Observer, pipe } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import { AngularFireUploadTask } from '@angular/fire/storage/task';
@@ -18,8 +18,9 @@ import firebase from 'firebase';
 })
 export class UsersService {
 
-  ref: AngularFireStorageReference;
-  task: AngularFireUploadTask;
+
+
+
 
   private apiUrl = environment.apiUrl;
   httpOptions = {
@@ -122,9 +123,38 @@ export class UsersService {
     return this.Firestore.collection('post').valueChanges();
   }
 
-  deletePost($key:string) {
+  deletePost($key: string) {
     return this.Firestore.collection('post').doc($key).delete();
   }
+
+
+  addPdf(nameTech, stage, subject, course, fileNameTheoretical, urlTheoretical, fileNamePractical, urlPractical, linkprogram, nameprogram) {
+    const key = this.Firestore.createId();
+    return this.Firestore.collection('pdf').doc(key).set({
+      $key: key,
+      teacher: nameTech,
+      stage: stage,
+      data: new Date().valueOf(),
+      subject: subject,
+      course: course,
+      fileNameTheoretical: fileNameTheoretical,
+      urlTheoretical: urlTheoretical,
+      fileNamePractical: fileNamePractical,
+      urlPractical: urlPractical,
+      linkprogram: linkprogram,
+      nameprogram: nameprogram
+    });
+  }
+  getPdf(): Observable<any> {
+    return this.Firestore.collection('pdf').valueChanges();
+  }
+
+  deletePdf($key: string) {
+    return this.Firestore.collection('pdf').doc($key).delete();
+  }
+
+
+
 
 
 }
