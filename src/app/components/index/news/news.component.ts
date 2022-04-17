@@ -19,7 +19,15 @@ export class NewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.DashboardService.post.subscribe(data => {
+      let datapost = [];
       this.post = data;
+      data.forEach(index => {
+        // if (index.status == 'private')
+        if (index.status == 'public')
+          datapost.push(index);
+
+      });
+      this.post = datapost;
       this.loadingData = false;
     });
 
