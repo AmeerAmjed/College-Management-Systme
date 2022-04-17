@@ -26,9 +26,9 @@
     </div>
 </header>
 
-<div>
+<div >
     <nav class="uk-navbar-container  " uk-navbar uk-sticky="animation: uk-animation-slide-top; show-on-up: true"
-        style=" height: 50px; background-color: #22588f;">
+        style=" height: 50px; background-color: #22588f;"  >
         <div class="uk-navbar-center uk-navbar-item  nav-overlay" id="navbar_collapse">
             <div class=" uk-navbar-flip">
                 <ul class="uk-navbar-nav uk-visible@s">
@@ -41,14 +41,15 @@
                 </ul>
             </div>
         </div>
-        <div class="uk-navbar-left ">
+        <div class="uk-navbar-left " >
 
             <ul class="uk-navbar-nav  uk-hidden@s ">
                 <li class="uk-margin-remove-top">
-                    <a style="padding-bottom: 28px" uk-navbar-toggle-icon></a>
-                    <div class="uk-width-1-1  "
-                        uk-dropdown="mode: click;animation: uk-animation-slide-top-small ; duration: 300; boundary-align: true"
-                        style="margin-top: -30px;background-color: #22588f;">
+
+                    <a  uk-navbar-toggle-icon></a>
+                    <div class="uk-width-1-1  " 
+                        uk-dropdown="mode: click;animation: uk-animation-slide-top-small ;"
+                        style="margin: 0px !important;;background-color: #22588f;">
                         <ul class="uk-nav uk-dropdown-nav ">
                             <li [routerLinkActive]="['uk-active']" [routerLinkActiveOptions]="{ exact: true }"><a [routerLink]="''">Home</a></li>
                             <li [routerLinkActive]="['uk-active']"><a routerLink="/resources">Resources</a></li>

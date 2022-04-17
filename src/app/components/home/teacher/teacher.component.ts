@@ -17,12 +17,12 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./teacher.component.css']
 })
 export class TeacherComponent implements OnInit {
+
   loading: Boolean = true;
   public innerWidth: any;
   sli: Boolean = false;
   itemList: AngularFireList<any>
   profileData: AngularFireList<any>
-  profile = [];
   userInfo: AngularFireList<any[]>;
   post: AngularFireList<any[]>;
   pdf: AngularFireList<any[]>;
@@ -30,7 +30,6 @@ export class TeacherComponent implements OnInit {
   changeDces: Boolean = true;
 
 
-  spinner = false
   emailVerified: boolean = false;
 
   formaddPdf: FormGroup;
@@ -153,7 +152,7 @@ export class TeacherComponent implements OnInit {
     lectures == 'Theoreticallectures' ? this.loadTheoretical = true : this.loadPractical = true;
     const file = event.target.files[0];
     
-    lectures == 'Theoreticallectures' ? this.fileNameTheoretical = file.name.split('.').push() : this.fileNamePractical = file.name;
+    lectures == 'Theoreticallectures' ? this.fileNameTheoretical = file.name.split('.').pop() : this.fileNamePractical = file.name;
     const id = Math.random().toString(36).substring(2);
     this.ref = this.FireStorage.ref(id);
     this.task = this.ref.put(file);
@@ -194,7 +193,10 @@ export class TeacherComponent implements OnInit {
   }
 
 
-
+  filters(teacher: String, course: String,statecourse: String) {
+    const data = JSON.parse(JSON.stringify(this.userInfo));
+    return (teacher == data.displayName) && (statecourse == course);
+  }
 
 
 }

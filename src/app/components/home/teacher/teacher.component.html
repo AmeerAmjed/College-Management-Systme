@@ -158,66 +158,58 @@
                     <li>
                         <a class="uk-accordion-title">Course one</a>
                         <div class="uk-accordion-content">
-                            <ul class="uk-list uk-list-bullet" style="
-                  max-height: 150px !important;
-                  overflow-y: scroll !important;
-                ">
-                                <!-- <li *ngFor="let pd of pdfC1" class="uk-visible-toggle">
-                                    <p>{{pd.nameSubject}}</p>
+                            <ul>
+                                <div *ngFor="let pd of pdf">
+                                    <li *ngIf="filters(pd.teacher, pd.course,'course1')" class="uk-visible-toggle">
+                                        <p>{{pd.nameSubject}}</p>
 
-                                    <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+                                        <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
 
-                                        <a href="{{pd.Theoretical}}" target="_blank">Theoretical</a>
-                                        <a href="{{pd.Practical}}" target="_blank">Practical</a>
-                                        <a href="{{pd.linkprogram}}" target="_blank">Link</a>
+                                            <a href="{{pd.urlTheoretical}}" target="_blank">Theoretical</a>
+                                            <a href="{{pd.urlTheoretical}}" target="_blank">Practical</a>
+                                            <a href="{{pd.linkprogram}}" target="_blank">Link</a>
 
-                                    </div>
-                                    <span class="uk-hidden-hover uk-text-danger"
-                                        *ngIf="pd.nameTech == userInfo?.displayName"
-                                        class="uk-align-right uk-hidden-hover" uk-icon="trash"
-                                        (click)="deletePdf(pd.$key)" uk-tooltip="Delete PDF"
-                                        style="position:  absolute !important;right: 5px;top: 0px;color: #f0506e !important"></span>
-
-
-
-                                </li> -->
-                                <!-- <li *ngIf="pdfC1.length == 0">
+                                        </div>
+                                        <span class="uk-hidden-hover uk-text-danger"
+                                            class="uk-align-right uk-hidden-hover" uk-icon="trash"
+                                            (click)="deletePdf(pd.$key)" uk-tooltip="Delete PDF"
+                                            style="color: #f0506e !important"></span>
+                                    </li>
+                                    <!-- <div *ngIf="!filters(pd.teacher, pd.course,'course1')">
                                     <p class="k-text-center uk-text-danger uk-text-bolder" style="text-align: center">No
                                         Data published yet</p>
-                                </li> -->
+                                    </div> -->
+                                </div>
+
+
                             </ul>
                         </div>
                     </li>
                     <li>
                         <a class="uk-accordion-title">Course Twe</a>
                         <div class="uk-accordion-content">
-                            <ul class="uk-list uk-list-bullet">
-                                <!-- <ul class="uk-list  uk-list-bullet">
-                                    {{pdfC2}}
-                                    <li *ngFor="let pd of pdfC2" class="uk-visible-toggle">
+                            <ul>
+                                <li *ngFor="let pd of pdf">
+                                    <div *ngIf="filters(pd.teacher, pd.course,'course2')" class="uk-visible-toggle">
+                                        <p>{{pd.nameSubject}}</p>
+
                                         <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
-                                            <span id="toggle-hover" *ngIf="pd.nameTech == userInfo?.displayName"
-                                                uk-icon="trash" (click)="deletePdf(pd.$key)"
-                                                uk-tooltip="Delete PDF"></span>
-                                            <p>{{pd.nameSubject}}</p>
-                                            <a href="{{pd.Theoretical}}" target="_blank">Theoret </a>
-                                            <a href="{{pd.Practical}}" target="_blank">Practical</a>
+
+                                            <a href="{{pd.urlTheoretical}}" target="_blank">Theoretical</a>
+                                            <a href="{{pd.urlTheoretical}}" target="_blank">Practical</a>
                                             <a href="{{pd.linkprogram}}" target="_blank">Link</a>
+
                                         </div>
                                         <span class="uk-hidden-hover uk-text-danger"
-                                            *ngIf="pd.nameTech == userInfo?.displayName"
                                             class="uk-align-right uk-hidden-hover" uk-icon="trash"
                                             (click)="deletePdf(pd.$key)" uk-tooltip="Delete PDF"
-                                            style="position:  absolute !important;right: 5px;top: 0px;color: #f0506e !important"></span>
-
-
-                                    </li>
-                                    <li *ngIf="pdfC2.length == 0">
-                                        <p class="k-text-center uk-text-danger uk-text-bolder"
-                                            style="text-align: center">No Data published yet</p>
-                                    </li>
-
-                                </ul> -->
+                                            style="color: #f0506e !important"></span>
+                                    </div>
+                                    <!-- <div *ngIf="!filters(pd.teacher, pd.course,'course2')">
+                                                    <p class="k-text-center uk-text-danger uk-text-bolder" style="text-align: center">No
+                                                        Data published yet</p>
+                                                    </div> -->
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -288,8 +280,7 @@
                         </div>
                     </article>
                 </div>
-                {{ userInfo | json }}
-                {{ post | json }}
+
             </div>
         </div>
     </main>
@@ -364,11 +355,11 @@
                     </div>
                 </div>
 
-                <div class="js-upload uk-placeholder uk-text-center" >
+                <div class="js-upload uk-placeholder uk-text-center">
                     <span [hidden]="loadPractical" uk-icon="icon: cloud-upload"></span>
                     <div *ngIf="!loadPractical" uk-form-custom>
-                        <input type="file"  [disabled]="progsTheoretical != 100" (change)="upload($event, 'Practicallectures')" accept=".pdf"
-                            title="Practical lectures" />
+                        <input type="file" [disabled]="progsTheoretical != 100"
+                            (change)="upload($event, 'Practicallectures')" accept=".pdf" title="Practical lectures" />
                         <span class="uk-link">File Practical lectures</span>
                     </div>
                     <div *ngIf="loadPractical">
@@ -395,7 +386,8 @@
           " type="button">
                     Cancel
                 </button>
-                <button class="uk-button uk-button-primary  " [disabled]="!formaddPdf.valid || !(progsTheoretical == 100) || !(progsPractical == 100)"
+                <button class="uk-button uk-button-primary  "
+                    [disabled]="!formaddPdf.valid || !(progsTheoretical == 100) || !(progsPractical == 100)"
                     type="submit">Save</button>
             </p>
         </form>

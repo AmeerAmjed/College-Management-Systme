@@ -8,8 +8,6 @@ import { throwError, Observable, Observer, pipe } from 'rxjs';
 import { retry, catchError, finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { AngularFireUploadTask } from '@angular/fire/storage/task';
-import { AngularFireStorageReference } from '@angular/fire/storage/ref';
 
 import UIkit from 'uikit'
 import firebase from 'firebase';
@@ -142,7 +140,7 @@ export class UsersService {
       fileNamePractical: fileNamePractical,
       urlPractical: urlPractical,
       linkprogram: linkprogram,
-      nameprogram: nameprogram
+      nameprogram: nameprogram,
     });
   }
   getPdf(): Observable<any> {
